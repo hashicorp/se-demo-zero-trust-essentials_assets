@@ -1,0 +1,12 @@
+vault secrets disable hashicups/database/
+Error disabling secrets engine at hashicups/database/: Error making API request.
+
+Namespace: admin/
+URL: DELETE https://zero-thrust-public-vault-e54c8f66.8118d7ba.z1.hashicorp.cloud:8200/v1/sys/mounts/hashicups/database
+Code: 400. Errors:
+
+* failed to revoke "hashicups/database/creds/product/LATMe4wyxUsHN8CQ8K9x7nz4.KtEnA" (1 / 6): failed to revoke entry: resp: (*logical.Response)(nil) err: failed to find entry for connection with name: "product"
+
+vault lease revoke -force -prefix hashicups/database/
+
+vault secrets disable hashicups/database/

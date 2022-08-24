@@ -1,0 +1,115 @@
+# HashiCups Outputs
+output "frontend_url" {
+  value = module.hashicups.frontend_url
+}
+
+output "frontend_ssh_string" {
+  value = module.hashicups.frontend_ssh_string
+}
+
+output "public_api_url" {
+  value = module.hashicups.public_api_url
+}
+
+output "public_api_ssh_string" {
+  value = module.hashicups.public_api_ssh_string
+}
+
+output "products_url" {
+  value = module.hashicups.products_url
+}
+
+output "product_api_ssh_string" {
+  value = module.hashicups.product_api_ssh_string
+}
+
+output "product_database_address" {
+  value = module.hashicups.product_database_address
+}
+
+output "target_db" {
+  value = module.hashicups.target_db
+}
+
+output "target_ec2" {
+  value = module.hashicups.target_ec2
+}
+
+output "db_password" {
+  sensitive = true
+  value     = module.hashicups.db_password
+}
+
+output "db_user" {
+  sensitive = true
+  value     = module.hashicups.db_user
+}
+
+output "aws_vpc_id" {
+  value = module.hashicups.aws_vpc_id
+}
+
+output "aws_route_table_id" {
+  value = module.hashicups.aws_route_table_id
+}
+
+output "aws_public_subnet_id" {
+  value = module.hashicups.aws_public_subnet_id
+}
+
+output "aws_vpc_region" {
+  value = module.hashicups.aws_vpc_region
+}
+
+# HCP - Vault-related data
+
+output "vault_admin_token" {
+  sensitive = true
+  value     = module.hcp.vault_admin_token
+}
+
+output "vault_public_endpoint_url" {
+  value = module.hcp.vault_public_endpoint_url
+}
+
+output "vault_namespace" {
+  value = module.hcp.vault_namespace
+}
+
+# Vault-specific data
+
+output "vault_token_for_boundary_credentials_store" {
+  sensitive = true
+  value     = module.hcp_vault.vault_token_for_boundary_credentials_store
+}
+
+# HCP Boundary data
+
+output "boundary_target_ec2" {
+  value = module.hcp_boundary.boundary_target_ec2
+}
+
+output "boundary_target_db" {
+  value = module.hcp_boundary.boundary_target_db
+}
+
+output "boundary_user" {
+  value = module.hcp_boundary.boundary_user
+}
+
+output "boundary_password" {
+  value = module.hcp_boundary.boundary_password
+}
+
+output "boundary_endpoint" {
+  value = module.hcp_boundary.boundary_endpoint
+}
+
+output "boundary_auth_method_id" {
+  value = module.hcp_boundary.boundary_auth_method_id
+}
+
+output "boundary_credentials_store_id" {
+  value = module.hcp_boundary.boundary_credentials_store_id
+}
+
