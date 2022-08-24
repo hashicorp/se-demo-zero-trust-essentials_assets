@@ -57,7 +57,7 @@ export TF_VAR_public_subnet=$(cd /root/terraform && terraform output -raw aws_pu
 ```
 Build the HCP Consul deployment
 ```bash
-cd /root/terraform/consul
+cd /root/terraform/hcp_consul
 terraform init
 terraform plan
 terraform apply -auto-approve
