@@ -32,6 +32,7 @@ export HCP_CLIENT_ID=**********
 1- Deploy Step by Step
 ===
 Create a new deployment. <o>This takes about 10-15 minutes.</o>
+
 1- Deploy HashiCups, HCP Vault and HCP Consul
 ```bash
 # This is our working directory
