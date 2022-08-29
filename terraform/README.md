@@ -20,7 +20,7 @@ bootstrap_user_password   = "correct-horse-battery-staple"
 auth_method_id            = "ampw_LAxLrruTqX"
 ```
 
-Look for Vault setup from HCP
+Expecting Service Principal credentials from HCP
 ```bash
 # These are here temporarily. We will ask
 # the user to provide their unique pair with
