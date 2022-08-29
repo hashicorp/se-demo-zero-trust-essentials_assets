@@ -7,18 +7,17 @@ HashiCups is a fictional coffee-shop application. It uses different layers to pr
 | Product API | 0.0.22  | GO Middlware | EC2 |
 | Product DB  | 14.3    | Postgres     | RDS |
 
-1- Deploy HashiCups
-===
 
-Create a new deployment
+0- BYOB and HCP Service Principal Account
+This deployment requires you to Bring-your-own-Boundary. Fill in your Boundary data in the
+`terraform.auto.tfvars` for the following:
 ```bash
-cd /root/terraform
-terraform init
-terraform apply -auto-approve -target module.hashicups
+# User-provided label for HCP Boundary instance
+controller_url            = "https://12345678-90ab-cdef-0123-4567890abcde.boundary.hashicorp.cloud"
+bootstrap_user_login_name = "administrator"
+bootstrap_user_password   = "correct-horse-battery-staple"
+auth_method_id            = "ampw_LAxLrruTqX"
 ```
-
-2- Configure Vault
-===
 
 Look for Vault setup from HCP
 ```bash
@@ -29,36 +28,57 @@ export HCP_CLIENT_SECRET=**********
 export HCP_CLIENT_ID=**********
 ```
 
-Obtain the data about the Vault instance
+1- Deploy Step by Step
+===
+Create a new deployment. <o>This takes about 10-15 minutes.</o>
 ```bash
+# This is our working directory
 cd /root/terraform
-terraform apply -auto-approve -target module.hcp
+# Apply to all modules in the deployment
+terraform init
+# Build AWS and HCP Resources
+terraform apply -auto-approve \
+-target module.hashicups \
+-target module.hcp
+```
+1- Configure HCP Vault
+```bash
 terraform apply -auto-approve -target module.hcp_vault
 ```
-
-3- Configure Boundary
-===
-
-Configure Boundary
+2- Configure HCP Boundary
 ```
-cd /root/terraform
 terraform apply -auto-approve -target module.hcp_boundary
 ```
-
-4- Configure Consul
-===
-Get the deployment details for VPC peering into AWS
+3- Post AWS -> HCP HVN Route Completion
 ```bash
-export TF_VAR_vpc_id=$(cd /root/terraform && terraform output -raw aws_vpc_id)
-export TF_VAR_vpc_region=$(cd /root/terraform && terraform output -raw aws_vpc_region)
-export TF_VAR_hvn_region=$(cd /root/terraform && terraform output -raw aws_vpc_region)
-export TF_VAR_public_route_table_id=$(cd /root/terraform && terraform output -raw aws_route_table_id)
-export TF_VAR_public_subnet=$(cd /root/terraform && terraform output -raw aws_public_subnet_id)
+terraform apply -auto-approve -target module.hcp_post
 ```
-Build the HCP Consul deployment
+4- Configure HCP Consul
 ```bash
-cd /root/terraform/hcp_consul
+terraform apply -auto-approve -target module.hcp_consul
+```
+
+
+2- Deploy all at once
+===
+
+Deploy the environment all at once.
+```bash
+# 1- Deploy HashiCups, HCP Vault and HCP Consul
+# This is our working directory
+cd /root/terraform
+# Apply to all modules in the deployment
 terraform init
-terraform plan
-terraform apply -auto-approve
+# Build AWS and HCP Resources
+terraform apply -auto-approve \
+-target module.hashicups \
+-target module.hcp
+# 2- Configure HCP Vault
+terraform apply -auto-approve -target module.hcp_vault
+# 3- Configure HCP Boundary
+terraform apply -auto-approve -target module.hcp_boundary
+# 4- Post AWS -> HCP HVN Route Completion
+terraform apply -auto-approve -target module.hcp_post
+# 5- Configure HCP Consul
+terraform apply -auto-approve -target module.hcp_consul
 ```

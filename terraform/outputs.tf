@@ -35,6 +35,10 @@ output "target_ec2" {
   value = module.hashicups.target_ec2
 }
 
+output "target_ec2_attributes" {
+  value = module.hashicups.target_ec2_attributes
+}
+
 output "db_password" {
   sensitive = true
   value     = module.hashicups.db_password
@@ -113,3 +117,17 @@ output "boundary_credentials_store_id" {
   value = module.hcp_boundary.boundary_credentials_store_id
 }
 
+# Consul data
+
+output "consul_root_token" {
+  sensitive = true
+  value     = module.hcp.consul_root_token
+}
+
+output "consul_url" {
+  value = module.hcp.consul_url
+}
+
+output "consul_datacenter" {
+  value = module.hcp.consul_datacenter
+}

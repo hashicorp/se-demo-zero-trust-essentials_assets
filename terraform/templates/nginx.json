@@ -1,0 +1,30 @@
+{
+  "service": {
+    "name": "nginx",
+    "port": 80,
+    "check": {
+      "id": "nginx",
+      "name": "nginx/80",
+      "tcp": "localhost:80",
+      "interval": "10s",
+      "timeout": "1s"
+    },
+    "connect": {
+      "sidecar_service": {
+        "proxy": {
+          "destination_service_name": "nginx",
+          "upstreams": [
+            {
+              "destination_name": "frontend",
+              "local_bind_port": 13000
+            },
+            {
+              "destination_name": "public-api",
+              "local_bind_port": 28080
+            }
+          ]
+        }
+      }
+    }
+  }
+}

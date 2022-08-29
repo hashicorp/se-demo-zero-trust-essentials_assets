@@ -38,6 +38,19 @@ output "target_ec2" {
   ]
 }
 
+output "target_ec2_attributes" {
+  sensitive = false
+
+  value = {
+    frontend = { name = "frontend",
+    ip = aws_instance.hashicups_frontend[0].public_ip },
+    public_api = { name = "public-api",
+    ip = aws_instance.hashicups_public_api[0].public_ip },
+    products_api = { name = "product-api",
+    ip = aws_instance.hashicups_products_api[0].public_ip }
+  }
+}
+
 output "db_password" {
   sensitive = true
   value     = aws_db_instance.products[0].password
@@ -60,6 +73,13 @@ output "aws_public_subnet_id" {
   value = aws_subnet.public_subnet[0].id
 }
 
+data "aws_region" "current" {}
+
 output "aws_vpc_region" {
-  value = var.region
+  value = data.aws_region.current.name
 }
+
+output "aws_ec2_security_group_id" {
+  value = aws_security_group.sg_22_80.id
+}
+

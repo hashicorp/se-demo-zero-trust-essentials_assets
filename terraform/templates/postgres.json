@@ -1,0 +1,16 @@
+{
+  "service": {
+    "name": "postgres",
+    "port": 5432,
+    "check": {
+      "id": "postgres",
+      "name": "postgres/5432",
+      "tcp": "localhost:5432",
+      "interval": "10s",
+      "timeout": "1s"
+    },
+    "connect": {
+      "sidecar_service": {}
+    }
+  }
+}

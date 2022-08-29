@@ -1,0 +1,26 @@
+{
+  "service": {
+    "name": "frontend",
+    "port": 3000,
+    "check": {
+      "id": "frontend",
+      "name": "frontend/3000",
+      "tcp": "localhost:3000",
+      "interval": "10s",
+      "timeout": "1s"
+    },
+    "connect": {
+      "sidecar_service": {
+        "proxy": {
+          "destination_service_name": "frontend",
+          "upstreams": [
+            {
+              "destination_name": "public-api",
+              "local_bind_port": 18080
+            }
+          ]
+        }
+      }
+    }
+  }
+}

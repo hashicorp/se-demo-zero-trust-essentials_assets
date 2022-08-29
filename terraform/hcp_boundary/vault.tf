@@ -20,13 +20,11 @@ resource "boundary_credential_library_vault" "database" {
   http_method         = "GET"
 }
 
-# This is here a placeholder until the TF provider
-# implements the -credential-type flag to indicate
-# SSH private key
-# resource "boundary_credential_library_vault" "ssh" {
-#   name                = "SSH"
-#   description         = "AWS EC2 hosts"
-#   credential_store_id = boundary_credential_store_vault.vault.id
-#   path                = "secret/data/my-secret"
-#   http_method         = "GET"
-# }
+resource "boundary_credential_library_vault" "ssh" {
+  name                = "SSH"
+  description         = "AWS EC2 hosts"
+  credential_type     = "ssh_private_key"
+  credential_store_id = boundary_credential_store_vault.vault.id
+  path                = "secret/data/my-secret"
+  http_method         = "GET"
+}

@@ -1,0 +1,37 @@
+{
+    "acl": {
+        "enabled": true,
+        "down_policy": "async-cache",
+        "default_policy": "deny",
+        "tokens": {
+            "agent": "12345678-9abc-def0-1234-56789abcdef0"
+        }
+    },
+    "tls": {
+        "defaults": {
+            "ca_file": "/etc/consul.d/ca.pem",
+            "verify_incoming": true,
+            "verify_outgoing": true
+        }
+    },
+    "datacenter": "zero-trust-123456",
+    "encrypt": "lT8StE41UY4KIcGIZZCbrQ==",
+    "encrypt_verify_incoming": true,
+    "encrypt_verify_outgoing": true,
+    "server": false,
+    "log_level": "INFO",
+    "ui_config": {
+        "enabled": false
+    },
+    "retry_join": [
+        "zero-trust-123456.private.consul.12345678-9abc-def0-1234-56789abcdef0.aws.hashicorp.cloud"
+    ],
+    "auto_encrypt": {
+        "tls": true
+    },
+    "ports": {
+        "grpc": 8502
+    },
+    "bind_addr": "{{ GetInterfaceIP \"eth0\" }}",
+    "data_dir": "/opt/consul"
+}

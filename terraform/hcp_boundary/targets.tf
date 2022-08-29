@@ -8,13 +8,9 @@ resource "boundary_target" "backend_servers_ssh" {
   host_source_ids = [
     boundary_host_set_static.backend_servers.id
   ]
-  # We need to create this manually. Until the 
-  # TF Boundary Provider schema implements the 
-  # -credential-type flag to indicate
-  # SSH private key
-  # application_credential_source_ids = [
-  #   boundary_credential_library_vault.ssh.id
-  # ]
+  application_credential_source_ids = [
+    boundary_credential_library_vault.ssh.id
+  ]
 }
 
 resource "boundary_target" "products_database_postgres" {

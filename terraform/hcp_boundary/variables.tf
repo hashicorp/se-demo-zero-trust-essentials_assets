@@ -26,7 +26,7 @@ variable "bootstrap_user_password" {
 }
 
 variable "target_ec2" {
-  type = set(string)
+  type = any
   # Add in IPs for any targets you would like to add
   # default = ["1.1.1.1", "2.2.2.2", "3.3.3.3"]
 }

@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.26.0"
+      version = "~> 4.0"
     }
 
   }
@@ -245,7 +245,7 @@ resource "aws_db_instance" "products" {
   engine                 = "postgres"
   engine_version         = "14.3"
   instance_class         = "db.t3.micro"
-  name                   = "products"
+  db_name                = "products"
   identifier             = "products"
   username               = var.database_username
   password               = var.database_password

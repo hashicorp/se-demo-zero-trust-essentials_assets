@@ -1,0 +1,29 @@
+{
+  "service": {
+    "name": "public-api",
+    "port": 8080,
+    "check": {
+      "id": "public-api",
+      "name": "public-api/8080",
+      "tcp": "localhost:8080",
+      "interval": "10s",
+      "timeout": "1s"
+    },
+    "connect": {
+      "sidecar_service": {
+        "proxy": {
+          "upstreams": [
+            {
+              "destination_name": "product-api",
+              "local_bind_port": 19090
+            },
+            {
+              "destination_name": "payments",
+              "local_bind_port": 18081
+            }
+          ]
+        }
+      }
+    }
+  }
+}

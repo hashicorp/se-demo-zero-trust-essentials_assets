@@ -1,0 +1,26 @@
+{
+  "service": {
+    "name": "product-api",
+    "port": 9090,
+    "check": {
+      "id": "product-api",
+      "name": "product-api/9090",
+      "tcp": "localhost:9090",
+      "interval": "10s",
+      "timeout": "1s"
+    },
+    "connect": {
+      "sidecar_service": {
+        "proxy": {
+          "destination_service_name": "product-api",
+          "upstreams": [
+            {
+              "destination_name": "postgres",
+              "local_bind_port": 15432
+            }
+          ]
+        }
+      }
+    }
+  }
+}

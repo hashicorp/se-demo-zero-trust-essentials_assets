@@ -6,9 +6,9 @@ resource "boundary_host_catalog_static" "backend_servers" {
 
 resource "boundary_host_static" "backend_servers" {
   for_each        = var.target_ec2
-  name            = "backend_server_${each.value}"
-  description     = "Backend server #${each.value}"
-  address         = each.key
+  name            = "Hashicups ${each.value.name}"
+  description     = "EC2 instance ${each.value.name}"
+  address         = each.value.ip
   host_catalog_id = boundary_host_catalog_static.backend_servers.id
   type            = "static"
 }

@@ -2,18 +2,24 @@ module "hashicups" {
   source = "./hashicups"
 }
 
-# export VAULT_ADDR=$(cd /root/vault/hcp && terraform output -raw vault_public_endpoint_url)
-# export VAULT_TOKEN=$(cd /root/vault/hcp  && terraform output -json vault_admin_token  | jq -r '.token')
-# export VAULT_NAMESPACE=$(cd /root/vault/hcp  && terraform output -raw vault_namespace)
-
 module "hcp" {
-  source           = "./hcp"
-  vault_cluster_id = var.vault_cluster_id
+  source = "./hcp"
+  # Required to start building HCP HVN, Vault and Consul 
+  vpc_id                = module.hashicups.aws_vpc_id
+  vpc_region            = module.hashicups.aws_vpc_region
+  hvn_region            = module.hashicups.aws_vpc_region
+  public_route_table_id = module.hashicups.aws_route_table_id
+  public_subnet         = module.hashicups.aws_public_subnet_id
+  security_group_id     = module.hashicups.aws_ec2_security_group_id
 }
 
-# export TF_VAR_product_database_username=$(cd /root/hashicups && terraform output -raw db_user)
-# export TF_VAR_product_database_address=$(cd /root/hashicups && terraform output -raw product_database_address)
-# export TF_VAR_product_database_password=$(cd /root/hashicups && terraform output -raw db_password)
+module "hcp_post" {
+  source                = "./hcp_post"
+  hvn_id                = module.hcp.hvn_id
+  vpc_id                = module.hashicups.aws_vpc_id
+  vpc_region            = module.hashicups.aws_vpc_region
+  public_route_table_id = module.hashicups.aws_route_table_id
+}
 
 module "hcp_vault" {
   source                    = "./hcp_vault"
@@ -39,10 +45,18 @@ module "hcp_boundary" {
   bootstrap_user_password   = var.bootstrap_user_password
 
   # Derived 
-  vault_token          = module.hcp_vault.vault_token_for_boundary_credentials_store
   vault_db_secret_path = module.hcp_vault.database_secret_path
+  vault_token          = module.hcp_vault.vault_token_for_boundary_credentials_store
   vault_address        = module.hcp.vault_public_endpoint_url
   vault_namespace      = module.hcp.vault_namespace
-  target_ec2           = module.hashicups.target_ec2
+  target_ec2           = module.hashicups.target_ec2_attributes
   target_db            = module.hashicups.target_db
+}
+
+module "hcp_consul" {
+  source     = "./hcp_consul"
+  address    = module.hcp.consul_url
+  datacenter = module.hcp.consul_datacenter
+  token      = module.hcp.consul_root_token
+  target_ec2 = module.hashicups.target_ec2_attributes
 }

@@ -14,6 +14,17 @@ sudo apt install --no-install-recommends yarn -y
 sudo apt install nginx -y
 sudo apt install jq -y
 
+# Consul Requirements
+export CONSUL_VERSION="1.13.1-1"
+
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+sudo apt-add-repository universe -y 
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main" 
+sudo apt update -y
+sudo UCF_FORCE_CONFFOLD=true apt upgrade -y
+sudo apt install consul=$CONSUL_VERSION -y
+sudo systemctl enable --now consul
+
 cd /home/ubuntu
 export APP_HOME=/opt/hashicups/frontend
 export APP_VERSION="1.0.5"
@@ -22,8 +33,6 @@ tar xvfz v$APP_VERSION.tar.gz
 mv frontend-$APP_VERSION frontend
 sudo mkdir -p /opt/hashicups
 sudo mv frontend $APP_HOME
-# sudo git clone https://github.com/hashicorp-demoapp/frontend.git $APP_HOME
-# sudo rm -fR $APP_HOME/.git
 
 # This is temporary to ensure we can access the contents of $APP_HOME
 sudo chown -R ubuntu:ubuntu $APP_HOME
