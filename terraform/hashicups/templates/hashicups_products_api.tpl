@@ -6,8 +6,9 @@ curl -OL https://golang.org/dl/go1.16.7.linux-amd64.tar.gz
 sudo tar -C /usr/local -xvf go1.16.7.linux-amd64.tar.gz
 sudo apt install jq -y
 
-# Consul Requirements
+# Consul and Vault Requirements
 export CONSUL_VERSION="1.13.1-1"
+export VAULT_VERSION="1.11.2-1"
 
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 sudo apt-add-repository universe -y 
@@ -15,6 +16,7 @@ sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(l
 sudo apt update -y
 sudo UCF_FORCE_CONFFOLD=true apt upgrade -y
 sudo apt install consul=$CONSUL_VERSION -y
+sudo apt install vault=$VAULT_VERSION -y
 sudo systemctl enable --now consul
 
 export GOPATH=/usr/local/go/bin
