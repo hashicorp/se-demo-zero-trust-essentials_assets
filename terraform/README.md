@@ -9,6 +9,7 @@ HashiCups is a fictional coffee-shop application. It uses different layers to pr
 
 
 0- BYOB and HCP Service Principal Account
+===
 This deployment requires you to Bring-your-own-Boundary. Fill in your Boundary data in the
 `terraform.auto.tfvars` for the following:
 ```bash
