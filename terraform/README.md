@@ -32,6 +32,7 @@ export HCP_CLIENT_ID=**********
 1- Deploy Step by Step
 ===
 Create a new deployment. <o>This takes about 10-15 minutes.</o>
+1- Deploy HashiCups, HCP Vault and HCP Consul
 ```bash
 # This is our working directory
 cd /root/terraform
@@ -42,19 +43,19 @@ terraform apply -auto-approve \
 -target module.hashicups \
 -target module.hcp
 ```
-1- Configure HCP Vault
+2- Configure HCP Vault
 ```bash
 terraform apply -auto-approve -target module.hcp_vault
 ```
-2- Configure HCP Boundary
+3- Configure HCP Boundary
 ```
 terraform apply -auto-approve -target module.hcp_boundary
 ```
-3- Post AWS -> HCP HVN Route Completion
+4- Post AWS -> HCP HVN Route Completion
 ```bash
 terraform apply -auto-approve -target module.hcp_post
 ```
-4- Configure HCP Consul
+5- Configure HCP Consul
 ```bash
 terraform apply -auto-approve -target module.hcp_consul
 ```
