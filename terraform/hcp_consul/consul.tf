@@ -62,6 +62,20 @@ resource "consul_config_entry" "product_api_intentions" {
   })
 }
 
+resource "consul_acl_policy" "anonymous_dns_read_policy" {
+  name        = "anonymous-dns-read"
+  description = "Anonymous DNS Read"
+  datacenters = [var.datacenter]
+  rules       = <<-RULE
+node_prefix "" {
+  policy = "read"
+}
+service_prefix "" {
+  policy = "read"
+}
+RULE
+}
+
 resource "consul_acl_policy" "agent_policy" {
   name        = "agent-policy"
   description = "Agent Token Policy"

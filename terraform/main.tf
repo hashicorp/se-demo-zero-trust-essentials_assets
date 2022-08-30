@@ -45,6 +45,7 @@ module "hcp_boundary" {
   bootstrap_user_password   = var.bootstrap_user_password
 
   # Derived 
+  name                 = module.hcp.hvn_id
   vault_db_secret_path = module.hcp_vault.database_secret_path
   vault_token          = module.hcp_vault.vault_token_for_boundary_credentials_store
   vault_address        = module.hcp.vault_public_endpoint_url

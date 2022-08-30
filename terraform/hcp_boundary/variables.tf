@@ -1,3 +1,7 @@
+variable "name" {
+  type = string
+}
+
 variable "controller_url" {
   type = string
   # Add your controller URL here, 

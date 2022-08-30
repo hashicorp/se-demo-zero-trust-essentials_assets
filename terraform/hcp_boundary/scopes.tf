@@ -1,5 +1,5 @@
 resource "boundary_scope" "hashicups" {
-  name                   = "HashiCups"
+  name                   = var.name
   scope_id               = "global"
   auto_create_admin_role = true
 }
