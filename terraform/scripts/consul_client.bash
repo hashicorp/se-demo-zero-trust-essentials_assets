@@ -59,14 +59,12 @@ done
 
 killall screen
 
-export CONSUL_HTTP_TOKEN=$CONSUL_ACL_TOKEN
-
 for file in "${service_files[@]}"; do
   if [[ -f "$file" ]]; then
     echo "Looking for service file /home/ubuntu/${file}"
     export SERVICE_NAME=$(cat "/home/ubuntu/${file}" | jq -r '.service.name')
     echo "Working on connect proxy for ${SERVICE_NAME} service..."
-    screen -dm bash -c "consul connect proxy -sidecar-for $SERVICE_NAME"
+    screen -dm bash -c "export CONSUL_HTTP_TOKEN=$CONSUL_ACL_TOKEN && consul connect proxy -sidecar-for $SERVICE_NAME"
     echo "Done with consul connect for $SERVICE_NAME "
   fi
 done

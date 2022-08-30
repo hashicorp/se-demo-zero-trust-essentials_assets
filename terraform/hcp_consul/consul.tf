@@ -76,6 +76,11 @@ service_prefix "" {
 RULE
 }
 
+resource "consul_acl_token_policy_attachment" "attachment" {
+  token_id = "00000000-0000-0000-0000-000000000002"
+  policy   = consul_acl_policy.anonymous_dns_read_policy.name
+}
+
 resource "consul_acl_policy" "agent_policy" {
   name        = "agent-policy"
   description = "Agent Token Policy"
