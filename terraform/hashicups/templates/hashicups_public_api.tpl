@@ -90,10 +90,11 @@ cat << EOF > /tmp/local.conf
 [Service]
 Environment="BIND_ADDRESS=:8080"
 Environment="PRODUCT_API_URI=http://PRODUCT_API_IP:9090"
-Environment="PAYMENT_API_URI=http://localhost:18000"
+Environment="PAYMENT_API_URI=http://PAYMENT_API_URI:8081"
 EOF
 
-# We need to replace the PRODUCT_API_IP later on with a remote-exec
+# We need to replace the PRODUCT_API_IP and the PAYMENT_API_URI
+# variables later on with a remote-exec.
 # Then we need daemon-reexec && daemon-reload
 
 sudo mkdir -p /etc/systemd/system/hashicups-public-api.service.d
@@ -103,6 +104,30 @@ sudo systemctl daemon-reload
 
 #sudo systemctl start hashicups-public-api
 #sudo systemctl status hashicups-public-api
+
+# This is the systemd service unit for Consul connect services.
+# One per system and used to instantiate multiple connect links.
+cat << EOF > /tmp/consul-proxy@.service
+[Unit]
+Description=Consul service mesh proxy for service %i
+After=network.target consul.service
+Requires=consul.service
+
+[Service]
+EnvironmentFile=/etc/consul.d/consul-proxy.env
+Type=simple
+ExecStart=/usr/bin/consul connect proxy -sidecar-for=%i
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo chown root:root /tmp/consul-proxy@.service
+sudo mv /tmp/consul-proxy@.service /usr/lib/systemd/system/.
+sudo ln -s /usr/lib/systemd/system/consul-proxy@.service /etc/systemd/system/consul-proxy@.service
+sudo systemctl daemon-reload
 
 echo "0" > /tmp/bootstrap_done
 

@@ -38,7 +38,7 @@ cat << EOF > /tmp/local.conf
 [Service]
 Environment="BIND_ADDRESS=:8080"
 Environment="PRODUCT_API_URI=http://${PRODUCT_API_IP}:9090"
-Environment="PAYMENT_API_URI=http://localhost:18000"
+Environment="PAYMENT_API_URI=http://${PAYMENT_API_URI}:8081"
 EOF
 
 sudo mv /tmp/local.conf /etc/systemd/system/hashicups-public-api.service.d/.

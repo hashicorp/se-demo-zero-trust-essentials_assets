@@ -1,0 +1,29 @@
+{
+  "service": {
+    "name": "payments",
+    "port": 8081,
+    "check": {
+      "id": "payments",
+      "name": "payments/8081",
+      "tcp": "localhost:8081",
+      "interval": "10s",
+      "timeout": "1s"
+    },
+    "connect": {
+      "sidecar_service": {
+        "proxy": {
+          "config": {
+            "service_address": "127.0.0.1",
+            "bind_address": "0.0.0.0"
+          },
+          "upstreams": [
+            {
+              "destination_name": "redis",
+              "local_bind_port": 16379
+            }
+          ]
+        }
+      }
+    }
+  }
+}

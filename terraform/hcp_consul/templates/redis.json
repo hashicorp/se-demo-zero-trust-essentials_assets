@@ -1,0 +1,23 @@
+{
+    "service": {
+        "name": "redis",
+        "port": 6379,
+        "check": {
+            "id": "redis",
+            "name": "redis/6379",
+            "tcp": "localhost:6379",
+            "interval": "10s",
+            "timeout": "1s"
+        },
+        "connect": {
+            "sidecar_service": {
+                "proxy": {
+                    "config": {
+                        "service_address": "127.0.0.1",
+                        "bind_address": "0.0.0.0"
+                    }
+                }
+            }
+        }
+    }
+}

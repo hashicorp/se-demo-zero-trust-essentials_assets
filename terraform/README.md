@@ -7,81 +7,71 @@ HashiCups is a fictional coffee-shop application. It uses different layers to pr
 | Product API | 0.0.22  | GO Middlware | EC2 |
 | Product DB  | 14.3    | Postgres     | RDS |
 
-
-0- BYOB and HCP Service Principal Account
+0- Requirements
 ===
-This deployment requires you to Bring-your-own-Boundary. Fill in your Boundary data in the
-`terraform.auto.tfvars` for the following:
-```bash
-# User-provided label for HCP Boundary instance
-controller_url            = "https://12345678-90ab-cdef-0123-4567890abcde.boundary.hashicorp.cloud"
-bootstrap_user_login_name = "administrator"
-bootstrap_user_password   = "correct-horse-battery-staple"
-auth_method_id            = "ampw_LAxLrruTqX"
-```
-
-Expecting Service Principal credentials from HCP
+Look for an HCP Service Principal Account
 ```bash
 # These are here temporarily. We will ask
 # the user to provide their unique pair with
-# and explainer form -if we use HCP Vault.
+# and explainer form. If you are doing this
+# manually, then express the data as follows:
 export HCP_CLIENT_SECRET=**********
 export HCP_CLIENT_ID=**********
 ```
+This scenario implies that you need to bring-your-own-boundary. The following data are required:
+- controller_url
+- bootstrap_user_login_name
+- bootstrap_user_password
+- auth_method_id
 
-1- Deploy Step by Step
+We can write this to a `terraform.auto.tfvars` file in the deployment, or we can express them as Terraform environment variables.
+```bash
+# terraform.auto.tfvars - HCP Boundary data
+controller_url            = "https://01234556-890a-bcde-f012-3456789abcde.boundary.hashicorp.cloud"
+bootstrap_user_login_name = "administrator"
+bootstrap_user_password   = "correct-horse-battery-staple"
+auth_method_id            = "ampw_cd3yTltIUs"
+```
+Or, actively as follows:
+```bash
+export TF_VAR_controller_url=https://01234556-890a-bcde-f012-3456789abcde.boundary.hashicorp.cloud
+export TF_VAR_bootstrap_user_login_name=administrator
+export TF_VAR_bootstrap_user_password=correct-horse-battery-staple
+export TF_VAR_auth_method_id=ampw_cd3yTltIUs
+```
+
+1- Deploy HashiCups
 ===
-Create a new deployment. <o>This takes about 10-15 minutes.</o>
-
-1- Deploy HashiCups, HCP Vault and HCP Consul
+Create a new deployment
 ```bash
-# This is our working directory
 cd /root/terraform
-# Apply to all modules in the deployment
 terraform init
-# Build AWS and HCP Resources
-terraform apply -auto-approve \
--target module.hashicups \
--target module.hcp
+terraform apply -auto-approve -target module.hashicups
 ```
-2- Configure HCP Vault
+2- Configure HCP Resources
+===
+We should have the HCP Service Principal credential expressed 
 ```bash
-terraform apply -auto-approve -target module.hcp_vault
+cd /root/terraform
+terraform apply -auto-approve -target module.hcp
 ```
-3- Configure HCP Boundary
-```
-terraform apply -auto-approve -target module.hcp_boundary
-```
-4- Post AWS -> HCP HVN Route Completion
+3- Post AWS -> HCP HVN Route Completion
+===
 ```bash
 terraform apply -auto-approve -target module.hcp_post
 ```
-5- Configure HCP Consul
-```bash
-terraform apply -auto-approve -target module.hcp_consul
-```
-
-
-2- Deploy all at once
+4- Configure HCP Vault
 ===
-
-Deploy the environment all at once.
 ```bash
-# 1- Deploy HashiCups, HCP Vault and HCP Consul
-# This is our working directory
-cd /root/terraform
-# Apply to all modules in the deployment
-terraform init
-# Build AWS and HCP Resources
-terraform apply -auto-approve \
--target module.hashicups \
--target module.hcp
-# 2- Configure HCP Vault
 terraform apply -auto-approve -target module.hcp_vault
-# 3- Configure HCP Boundary
+```
+5- Configure HCP Boundary 
+===
+```
 terraform apply -auto-approve -target module.hcp_boundary
-# 4- Post AWS -> HCP HVN Route Completion
-terraform apply -auto-approve -target module.hcp_post
-# 5- Configure HCP Consul
+```
+6- Configure HCP Consul
+===
+```bash
 terraform apply -auto-approve -target module.hcp_consul
 ```

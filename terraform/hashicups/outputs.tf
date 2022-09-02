@@ -42,12 +42,12 @@ output "target_ec2_attributes" {
   sensitive = false
 
   value = {
-    frontend = { name = "frontend",
-    ip = aws_instance.hashicups_frontend[0].public_ip },
-    public_api = { name = "public-api",
-    ip = aws_instance.hashicups_public_api[0].public_ip },
-    products_api = { name = "product-api",
-    ip = aws_instance.hashicups_products_api[0].public_ip }
+    nginx       = { name = "nginx", ip = aws_instance.hashicups_frontend[0].public_ip },
+    frontend    = { name = "frontend", ip = aws_instance.hashicups_frontend[0].public_ip },
+    public_api  = { name = "public-api", ip = aws_instance.hashicups_public_api[0].public_ip },
+    product_api = { name = "product-api", ip = aws_instance.hashicups_products_api[0].public_ip },
+    payments    = { name = "payments", ip = aws_instance.hashicups_products_api[0].public_ip },
+    redis       = { name = "redis", ip = aws_instance.hashicups_products_api[0].public_ip }
   }
 }
 

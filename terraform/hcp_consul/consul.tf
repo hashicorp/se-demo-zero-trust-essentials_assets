@@ -62,6 +62,22 @@ resource "consul_config_entry" "product_api_intentions" {
   })
 }
 
+resource "consul_acl_policy" "service_policy" {
+  name        = "service-policy"
+  description = "Service Policy"
+  datacenters = [var.datacenter]
+  rules       = <<-RULE
+node_prefix "" {
+  policy = "read"
+}
+
+service_prefix "" {
+  policy = "write"
+  intentions = "write"
+}
+RULE
+}
+
 resource "consul_acl_policy" "anonymous_dns_read_policy" {
   name        = "anonymous-dns-read"
   description = "Anonymous DNS Read"
@@ -90,15 +106,18 @@ node_prefix "" {
    policy = "write"
 }
 service_prefix "" {
-   policy = "write"
+   policy = "read"
+   intentions = "read"
 }
 RULE
 }
 
 resource "consul_acl_token" "client_token" {
   description = "Agent Token"
-  policies    = ["${consul_acl_policy.agent_policy.name}"]
-  local       = true
+  policies = [
+    "${consul_acl_policy.agent_policy.name}",
+  "${consul_acl_policy.service_policy.name}"]
+  local = true
 }
 
 data "consul_acl_token_secret_id" "read" {
@@ -116,11 +135,11 @@ resource "null_resource" "consul_client_data" {
 
 }
 
-resource "null_resource" "consul_client_config" {
-  for_each = var.target_ec2
+resource "null_resource" "consul_client_config_files" {
+  for_each = var.target_ec2_attributes
 
   provisioner "file" {
-    source      = "./templates/${each.value.name}.json"
+    source      = "${path.module}/templates/${each.value.name}.json"
     destination = "/home/ubuntu/${each.value.name}.json"
 
     connection {
@@ -144,7 +163,7 @@ resource "null_resource" "consul_client_config" {
   }
 
   provisioner "file" {
-    source      = "./scripts/consul_client.bash"
+    source      = "${path.module}/scripts/consul_client.bash"
     destination = "/home/ubuntu/consul_client.bash"
 
     connection {
@@ -154,6 +173,14 @@ resource "null_resource" "consul_client_config" {
       host        = each.value.ip
     }
   }
+}
+
+resource "null_resource" "consul_client_config" {
+  depends_on = [
+    null_resource.consul_client_config_files
+  ]
+
+  for_each = toset(var.target_ec2_unique)
 
   provisioner "remote-exec" {
     inline = [
@@ -165,7 +192,7 @@ resource "null_resource" "consul_client_config" {
       type        = "ssh"
       user        = "ubuntu"
       private_key = file("./private.key")
-      host        = each.value.ip
+      host        = each.value
     }
 
   }

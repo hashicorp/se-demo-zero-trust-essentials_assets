@@ -4,7 +4,7 @@ resource "null_resource" "configure-rds-postgres" {
   ]
 
   provisioner "local-exec" {
-    command     = "export PGPASSWORD=${var.database_password} && psql -h ${aws_db_instance.products[0].address} -U ${var.database_username} -d products -f scripts/products.sql"
+    command     = "export PGPASSWORD=${var.database_password} && psql -h ${aws_db_instance.products[0].address} -U ${var.database_username} -d products -f ${path.module}/scripts/products.sql"
     interpreter = ["/usr/bin/bash", "-c"]
   }
 }

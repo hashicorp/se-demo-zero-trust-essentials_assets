@@ -103,3 +103,27 @@ resource "vault_token" "boundary_credentials_store" {
     "purpose" = "boundary-credentials-library"
   }
 }
+
+resource "vault_mount" "transit" {
+  path        = "transit"
+  type        = "transit"
+  description = "Payments API"
+}
+
+resource "vault_transit_secret_backend_key" "key" {
+  backend          = vault_mount.transit.path
+  name             = "zero-trust-payments"
+  deletion_allowed = true
+}
+
+resource "vault_token" "payments_transit_encryption" {
+  policies          = [vault_policy.hashicups_payments.name]
+  no_default_policy = true
+  no_parent         = true
+  renewable         = true
+  ttl               = "120m"
+  period            = "120m"
+  metadata = {
+    "purpose" = "Hashicups Payments Encryption"
+  }
+}

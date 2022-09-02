@@ -161,6 +161,30 @@ EOF
 sudo mv  /tmp/nginx.default /etc/nginx/sites-available/default
 sudo systemctl reload nginx
 
+# This is the systemd service unit for Consul connect services.
+# One per system and used to instantiate multiple connect links.
+cat << EOF > /tmp/consul-proxy@.service
+[Unit]
+Description=Consul service mesh proxy for service %i
+After=network.target consul.service
+Requires=consul.service
+
+[Service]
+EnvironmentFile=/etc/consul.d/consul-proxy.env
+Type=simple
+ExecStart=/usr/bin/consul connect proxy -sidecar-for=%i
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo chown root:root /tmp/consul-proxy@.service
+sudo mv /tmp/consul-proxy@.service /usr/lib/systemd/system/.
+sudo ln -s /usr/lib/systemd/system/consul-proxy@.service /etc/systemd/system/consul-proxy@.service
+sudo systemctl daemon-reload
+
 echo "0" > /tmp/bootstrap_done
 
 exit 0

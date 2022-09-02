@@ -80,6 +80,10 @@ output "vault_namespace" {
   value = module.hcp.vault_namespace
 }
 
+output "payments_host_test" {
+  value = "curl -s -X POST --header \"Content-Type: application/json\" --data '{\"name\": \"Gerry\", \"type\": \"mastercard\", \"number\": \"1234-1234-1234-1234\", \"expiry\": \"01/23\", \"cvc\": \"123\"}' ${module.hcp_vault.payments_host}:8081 | jq"
+}
+
 # Vault-specific data
 
 output "vault_token_for_boundary_credentials_store" {

@@ -41,3 +41,16 @@ capabilities = ["update"]
 }
 EOT
 }
+
+resource "vault_policy" "hashicups_payments" {
+  name = "hashicups-payments"
+
+  policy = <<EOT
+path "transit/encrypt/zero-trust-payments" {
+   capabilities = [ "update" ]
+}
+path "transit/decrypt/zero-trust-payments" {
+   capabilities = [ "update" ]
+}
+EOT
+}

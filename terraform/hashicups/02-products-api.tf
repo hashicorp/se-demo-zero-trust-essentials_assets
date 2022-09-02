@@ -5,7 +5,7 @@ resource "null_resource" "configure-product-api" {
   ]
 
   provisioner "file" {
-    source      = "scripts/products_auth.bash"
+    source      = "${path.module}/scripts/products_auth.bash"
     destination = "/home/ubuntu/products_auth.bash"
 
     connection {

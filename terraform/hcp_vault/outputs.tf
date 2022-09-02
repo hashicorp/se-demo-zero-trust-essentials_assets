@@ -6,3 +6,7 @@ output "vault_token_for_boundary_credentials_store" {
   sensitive = true
   value     = vault_token.boundary_credentials_store.client_token
 }
+
+output "payments_host" {
+  value = local.payments_host_attributes["ip"]
+}

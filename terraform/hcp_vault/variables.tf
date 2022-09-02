@@ -1,10 +1,9 @@
 variable "address" {}
 variable "token" {}
 variable "namespace" {}
-variable "vault_provider_depends_on" {
-  type      = any
-  default   = []
-  sensitive = true
+
+variable "target_ec2_attributes" {
+  type = any
 }
 
 variable "name" {

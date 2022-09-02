@@ -7,7 +7,7 @@ resource "null_resource" "configure-frontend" {
   ]
 
   provisioner "file" {
-    source      = "scripts/frontend_next.bash"
+    source      = "${path.module}/scripts/frontend_next.bash"
     destination = "/home/ubuntu/frontend_next.bash"
 
     connection {

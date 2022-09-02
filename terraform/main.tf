@@ -29,10 +29,7 @@ module "hcp_vault" {
   product_database_username = module.hashicups.db_user
   product_database_address  = module.hashicups.product_database_address
   product_database_password = module.hashicups.db_password
-
-  vault_provider_depends_on = [
-    module.hcp.vault_admin_token
-  ]
+  target_ec2_attributes     = module.hashicups.target_ec2_attributes
 }
 
 module "hcp_boundary" {
@@ -55,9 +52,10 @@ module "hcp_boundary" {
 }
 
 module "hcp_consul" {
-  source     = "./hcp_consul"
-  address    = module.hcp.consul_url
-  datacenter = module.hcp.consul_datacenter
-  token      = module.hcp.consul_root_token
-  target_ec2 = module.hashicups.target_ec2_attributes
+  source                = "./hcp_consul"
+  address               = module.hcp.consul_url
+  datacenter            = module.hcp.consul_datacenter
+  token                 = module.hcp.consul_root_token
+  target_ec2_unique     = module.hashicups.target_ec2
+  target_ec2_attributes = module.hashicups.target_ec2_attributes
 }
