@@ -20,7 +20,7 @@ resource "null_resource" "configure-public-api" {
   provisioner "remote-exec" {
     inline = [
       "chmod u+x /home/ubuntu/public_auth.bash",
-      "PRODUCT_API_IP=\"${aws_instance.hashicups_products_api[0].public_ip}\" PAYMENT_API_URI=\"${aws_instance.hashicups_products_api[0].public_ip}\" /home/ubuntu/public_auth.bash",
+      "PRODUCT_API_HOST=${aws_instance.hashicups_products_api[0].public_ip} PRODUCT_API_PORT=9090 PAYMENT_API_HOST=${aws_instance.hashicups_products_api[0].public_ip} PAYMENT_API_PORT=8081 /home/ubuntu/public_auth.bash",
       "sudo systemctl start hashicups-public-api",
     ]
 

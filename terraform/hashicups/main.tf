@@ -42,7 +42,7 @@ resource "aws_instance" "hashicups_frontend" {
   instance_type               = "t2.micro"
   key_name                    = aws_key_pair.main.key_name
   subnet_id                   = aws_subnet.public_subnet[count.index].id
-  vpc_security_group_ids      = [aws_security_group.sg_22_80.id]
+  vpc_security_group_ids      = [aws_security_group.hashicups.id]
   associate_public_ip_address = true
   user_data                   = data.template_file.hashicups_frontend.rendered
 
@@ -61,7 +61,7 @@ resource "aws_instance" "hashicups_public_api" {
   instance_type               = "t2.micro"
   key_name                    = aws_key_pair.main.key_name
   subnet_id                   = aws_subnet.public_subnet[count.index].id
-  vpc_security_group_ids      = [aws_security_group.sg_22_80.id]
+  vpc_security_group_ids      = [aws_security_group.hashicups.id]
   associate_public_ip_address = true
   user_data                   = data.template_file.hashicups_public_api.rendered
 
@@ -80,7 +80,7 @@ resource "aws_instance" "hashicups_products_api" {
   instance_type               = "t2.micro"
   key_name                    = aws_key_pair.main.key_name
   subnet_id                   = aws_subnet.public_subnet[count.index].id
-  vpc_security_group_ids      = [aws_security_group.sg_22_80.id]
+  vpc_security_group_ids      = [aws_security_group.hashicups.id]
   associate_public_ip_address = true
   user_data                   = data.template_file.hashicups_products_api.rendered
 
@@ -140,8 +140,8 @@ resource "aws_route_table_association" "rta_public_subnet" {
   route_table_id = aws_route_table.rtb_public.id
 }
 
-resource "aws_security_group" "sg_22_80" {
-  name   = "sg_22_80"
+resource "aws_security_group" "hashicups" {
+  name   = "hashicups"
   vpc_id = aws_vpc.vpc.id
 
   # SSH access from the VPC
@@ -200,6 +200,13 @@ resource "aws_security_group" "sg_22_80" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = [aws_vpc.vpc.cidr_block]
+  }
 }
 
 resource "aws_security_group" "database" {
@@ -208,11 +215,11 @@ resource "aws_security_group" "database" {
   vpc_id      = aws_vpc.vpc.id
 
   ingress {
-    description     = "Allow inbound from public listener"
+    description     = "Allow inbound from products API"
     from_port       = 5432
     to_port         = 5432
     protocol        = "tcp"
-    security_groups = [aws_security_group.sg_22_80.id]
+    security_groups = [aws_security_group.hashicups.id]
   }
 
   ingress {

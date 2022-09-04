@@ -89,13 +89,13 @@ sudo systemctl daemon-reload
 cat << EOF > /tmp/local.conf
 [Service]
 Environment="BIND_ADDRESS=:8080"
-Environment="PRODUCT_API_URI=http://PRODUCT_API_IP:9090"
-Environment="PAYMENT_API_URI=http://PAYMENT_API_URI:8081"
+Environment="PRODUCT_API_URI=http://PRODUCT_API_HOST:PRODUCT_API_HOST"
+Environment="PAYMENT_API_URI=http://PAYMENT_API_HOST:PAYMENT_API_PORT"
 EOF
 
-# We need to replace the PRODUCT_API_IP and the PAYMENT_API_URI
-# variables later on with a remote-exec.
-# Then we need daemon-reexec && daemon-reload
+# We need to replace the PRODUCT_API_HOST and the PRODUCT_API_HOST, and
+# the PAYMENT_API_HOST and PAYMENT_API_PORT placeholder variables later 
+# with a remote-exec. Then we need daemon-reexec && daemon-reload again.
 
 sudo mkdir -p /etc/systemd/system/hashicups-public-api.service.d
 sudo mv /tmp/local.conf /etc/systemd/system/hashicups-public-api.service.d/.

@@ -152,13 +152,14 @@ server {
   }
 
     location /api {
-    proxy_pass http://PUBLIC_API_IP:8080;
+    proxy_pass http://PUBLIC_API_HOST:PUBLIC_API_PORT;
   }
 
 }
 EOF
 
-sudo mv  /tmp/nginx.default /etc/nginx/sites-available/default
+sudo cp /tmp/nginx.default /home/ubuntu/nginx_default
+sudo mv /tmp/nginx.default /etc/nginx/sites-available/default
 sudo systemctl reload nginx
 
 # This is the systemd service unit for Consul connect services.

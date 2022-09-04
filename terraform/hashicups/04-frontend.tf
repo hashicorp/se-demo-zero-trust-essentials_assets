@@ -21,7 +21,7 @@ resource "null_resource" "configure-frontend" {
   provisioner "remote-exec" {
     inline = [
       "chmod u+x /home/ubuntu/frontend_next.bash",
-      "PUBLIC_API_IP=${aws_instance.hashicups_public_api[0].public_ip} /home/ubuntu/frontend_next.bash",
+      "PUBLIC_API_NEXT_HOST=${aws_instance.hashicups_public_api[0].public_ip} PUBLIC_API_NEXT_PORT=8080 PUBLIC_API_HOST=${aws_instance.hashicups_public_api[0].public_ip} PUBLIC_API_PORT=8080 /home/ubuntu/frontend_next.bash",
       "sudo systemctl restart hashicups-frontend",
       "sudo systemctl restart nginx",
     ]

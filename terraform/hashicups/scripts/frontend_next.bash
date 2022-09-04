@@ -31,7 +31,7 @@ done
 sudo chown -R ubuntu:ubuntu $APP_HOME
 
 # For the build environment, express the variables interactively
-export NEXT_PUBLIC_PUBLIC_API_URL=http://$PUBLIC_API_IP:8080
+export NEXT_PUBLIC_PUBLIC_API_URL=http://$PUBLIC_API_NEXT_HOST:$PUBLIC_API_NEXT_PORT
 export NEXT_PUBLIC_FOOTER_FLAG=HashiCups
 
 # Move the working directory
@@ -72,7 +72,7 @@ done
 # Create service depedency here:
 cat << EOF > /tmp/local.conf
 [Service]
-Environment="NEXT_PUBLIC_PUBLIC_API_URL=http://${PUBLIC_API_IP}:8080"
+Environment="NEXT_PUBLIC_PUBLIC_API_URL=${NEXT_PUBLIC_PUBLIC_API_URL}"
 EOF
 
 sudo mv /tmp/local.conf /etc/systemd/system/hashicups-frontend.service.d/.
@@ -90,5 +90,7 @@ until [ -f "$SERVICE" ]; do
   sleep 2
 done
 
-sudo sed -i "s/PUBLIC_API_IP/$PUBLIC_API_IP/g" $APP_HOME/default
+sudo cp /home/ubuntu/nginx_default $APP_HOME/default
+sudo sed -i "s/PUBLIC_API_HOST/$PUBLIC_API_HOST/g" $APP_HOME/default
+sudo sed -i "s/PUBLIC_API_PORT/$PUBLIC_API_PORT/g" $APP_HOME/default
 sudo systemctl reload nginx
