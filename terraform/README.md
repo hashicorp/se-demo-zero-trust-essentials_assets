@@ -6,6 +6,8 @@ HashiCups is a fictional coffee-shop application. It uses different layers to pr
 | Public API  | 0.0.7   | GraphQL API  | EC2 |
 | Product API | 0.0.22  | GO Middlware | EC2 |
 | Product DB  | 14.3    | Postgres     | RDS |
+| Payments    | 0.0.16  | Spring Boot  | EC2 |
+| Payments DB | latest  | Redis        | EC2 |
 
 0- Requirements
 ===
