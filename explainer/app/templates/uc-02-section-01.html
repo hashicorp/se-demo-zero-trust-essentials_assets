@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block main_body %}
+
+<div class="main-container">
+    <div class="main-content">
+
+        <div class="explainer-wrapper">
+            <div class="explainer" style="--splash-delay: 1;">
+                <h1>HashiCorp Vault</h1>
+                <p>Ephemeral, on-demand dynamic secrets creation to safeguard against secrets sprawl and leakage.</p>
+
+            </div>
+            <div class="explainer" style="--splash-delay: 3">
+                <p>Safely store credentials, keys, and other secrets without having to oversee a complex secret
+                    management infrastructure
+                </p>
+            </div>
+        </div>
+
+        <div class="explainer-wrapper">
+            <div class="explainer" style="--splash-delay: 1;">
+                <img src="{{ url_for('static', filename='img/uc-02-example.svg') }}" alt="Vault">
+                <span class="tooltiptext" id="tooltiptext">Vault authentication and authorization chain</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block last_page %}
+<a href="{{ url_for('uc_02_challenge') }}">
+    <img src="{{ url_for('static', filename='img/left-arrow.svg') }}" alt="Last">
+</a>
+{% endblock %}
+
+
+{% block next_page %}
+<a href="{{ url_for('uc_02_section_02') }}">
+    <img src="{{ url_for('static', filename='img/right-arrow.svg') }}" alt="Next">
+</a>
+{% endblock %}

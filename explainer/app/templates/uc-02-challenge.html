@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+
+{% endblock %}
+
+{% block main_body %}
+
+<div class="main-container">
+    <div class="main-content">
+        <div class="explainer-wrapper">
+
+            <h1>Securing Applications and Secrets</h1>
+            <table class="styled-table">
+                <tr>
+                    <th>Challenges</th>
+                </tr>
+                <tr>
+                    <td><strong>Initial Access</strong>:
+                        Weak authentication, crendential leaks and sprawl: most commont attack vector (IBM).
+                    </td>
+                    <td><strong>Current Gap</strong>:
+                        Static secrets expose systems and compromise safety of sensitive data.</td>
+                </tr>
+                <tr>
+                    <td><strong>Privilege Escalation</strong>:
+                        Privileged user misuse involved in 37% of attacks (SANS).</td>
+                    <td><strong>Current Gap</strong>:
+                        Improperly scoped tokens allows attackers to continue escalating until accessing an admin or
+                        root account.</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block next_page %}
+<a href="{{ url_for('uc_02_section_01') }}">
+    <img src="{{ url_for('static', filename='img/right-arrow.svg') }}" alt="Next">
+</a>
+{% endblock %}

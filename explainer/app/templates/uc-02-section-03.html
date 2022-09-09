@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<style>
+</style>
+{% endblock %}
+
+{% block main_body %}
+
+<div class="main-container">
+    <div class="main-content">
+        <div class="slide-content">
+
+            <div class="explainer-wrapper">
+                <h1>Dynamic Secrets</h1>
+                <p>Vault dynamic secrets makes it incredibly difficult for threat actors to escalate their privileges.
+                    Vault has the unique ability to create, rotate, and revoke secrets dynamically. These dynamic
+                    secrets can be generated on-demand, providing just-in-time credentials that are short-lived, along
+                    with being able to revoke access, and continuously rotate secrets.
+                </p>
+                <br>
+                <img src="{{ url_for('static', filename='img/uc-02-database.svg') }}" alt="Vault">
+                <span class="tooltiptext" id="tooltiptext">Automated workflow for DB Secrets</span>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block last_page %}
+<a href="{{ url_for('uc_02_section_02') }}">
+    <img src="{{ url_for('static', filename='img/left-arrow.svg') }}" alt="Last">
+</a>
+{% endblock %}

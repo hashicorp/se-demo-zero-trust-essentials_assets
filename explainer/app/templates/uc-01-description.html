@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<style>
+</style>
+{% endblock %}
+
+{% block main_body %}
+
+<div class="main-container">
+    <div class="main-content">
+        <div class="slide-content">
+
+            <div class="explainer-wrapper">
+                <h1>Stage 01: Unauthorized Access</h1>
+                <p>An attacker gains unauthorized access to our organization’s systems by
+                    targetting common vulnerabilities.</p>
+                <br>
+                <img src="{{ url_for('static', filename='img/aoab-stage-1.svg') }}" alt="Vault">
+                <span class="tooltiptext" id="tooltiptext">Basic inconsistencies</span>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block last_page %}
+<a href="{{ url_for('uc_01_challenge') }}">
+    <img src="{{ url_for('static', filename='img/left-arrow.svg') }}" alt="Last">
+</a>
+{% endblock %}
+
+
+{% block next_page %}
+<a href="{{ url_for('uc_01_example') }}">
+    <img src="{{ url_for('static', filename='img/right-arrow.svg') }}" alt="Next">
+</a>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block main_body %}
+
+
+<div class="main-container">
+    <div class="main-content">
+        <div class="slide-content">
+
+            <div class="explainer-wrapper">
+                <h1>Terraform Cloud Run Task for HCP Packer</h1>
+                <p>Validate image resources to ensure they are currently approved, and monitor for
+                    hard-coded image IDs to ensure compliance.
+                </p>
+                <img src="{{ url_for('static', filename='img/uc-03-TFC_run_task.svg') }}" alt="TFC Run Task">
+                <span class="tooltiptext" id="tooltiptext">Run Tasks validate workflow items</span>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block last_page %}
+<a href="{{ url_for('uc_03_section_01') }}">
+    <img src="{{ url_for('static', filename='img/left-arrow.svg') }}" alt="Last">
+</a>
+{% endblock %}
+
+
+{% block next_page %}
+<a href="{{ url_for('uc_03_section_03') }}">
+    <img src="{{ url_for('static', filename='img/right-arrow.svg') }}" alt="Next">
+</a>
+{% endblock %}

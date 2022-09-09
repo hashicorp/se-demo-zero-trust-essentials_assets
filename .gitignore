@@ -27,3 +27,90 @@ override.tf.json
 
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
+
+
+# Anything used for testing
+.deployment_data
+deployment_data.json
+secrets
+# products.sql
+
+# Joe's branch
+se-demo-zero-trust-essentials_assets-jthompson-consul-mesh
+
+# MacOS generated files #
+#########################
+.DS_Store
+.DS_Store?
+
+# Any test files #
+##################
+test*
+
+# The Affinty Designer files #
+# Those are not practically  #
+# required. If you want them #
+# please just ask.           #
+##############################
+*.afdesign
+
+# Local data files that may  #
+# contain sensitive info.    #
+##############################
+test_data
+
+# Although this is transient,  #
+# it should not be here. It is #
+# need in development but must #
+# not be shared.               #
+################################
+vault-unseal.json
+
+# Ignore all certificate files.#
+################################
+*.crt
+*.key
+*.pem
+
+# Log files are not required.  #
+################################
+*.log
+
+# Remove Python Egg package as #
+# it is built during bootstrap.#
+# Also ignore cache and venv   #
+################################
+explainer.egg-info
+app.egg-info
+__pycache__
+venv
+
+# Don't really need VSCode    #
+################################
+.vscode
+
+# HCP Credentials in testing   #
+################################
+hcp_credentials
+
+# Removing some running data   #
+################################
+nohup.out
+
+# Terraform state files #
+#########################
+*.tfstate
+*.tfstate.backup
+
+# Terraform provider files #
+###########################
+.terraform
+.terraform.lock.hcl
+terraform-branch*
+terraform.original
+terraform.tfstate*
+terraform.auto.tfvars
+
+# deprecated items in dev #
+###########################
+removed

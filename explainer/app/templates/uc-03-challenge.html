@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+
+{% endblock %}
+
+{% block main_body %}
+
+<div class="main-container">
+    <div class="main-content">
+        <div class="explainer-wrapper">
+
+            <h1>Securing Networks and Data</h1>
+            <table class="styled-table">
+                <tr>
+                    <th>Challenges</th>
+                </tr>
+                <tr>
+                    <td><strong>Lateral Movement</strong>:
+                        62% of attacks involved attempted lateral movement (VMWare).
+                    </td>
+                    <td><strong>Current Gap</strong>:
+                        Opening network resources to endpoint devices and users allows attackers to move throughout
+                        network virtually undetected.</td>
+                </tr>
+                <tr>
+                    <td><strong>Exfiltration</strong>:
+                        Average cost of a data breach is $3.6 million (IBM).
+                    </td>
+                    <td><strong>Current Gap</strong>:
+                        Plaintext stored data exposes proprietary algorithms and confidential company data to threat
+                        actors.</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block next_page %}
+<a href="{{ url_for('uc_03_section_01') }}">
+    <img src="{{ url_for('static', filename='img/right-arrow.svg') }}" alt="Next">
+</a>
+{% endblock %}

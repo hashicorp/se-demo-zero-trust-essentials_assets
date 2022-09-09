@@ -1,0 +1,13 @@
+[Unit]
+Description=HCP Packer Essentials
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/root/www
+Environment="/root/www/venv/bin"
+ExecStart=/root/www/venv/bin/uwsgi --ini /root/www/explainer.ini
+
+[Install]
+WantedBy=multi-user.target

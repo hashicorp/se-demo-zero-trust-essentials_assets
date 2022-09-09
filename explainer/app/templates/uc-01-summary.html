@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<style>
+</style>
+{% endblock %}
+
+{% block main_body %}
+
+<div class="main-container">
+    <div class="main-content">
+        <div class="explainer-wrapper">
+
+            <h1>Summary of benefits</h1>
+            <table class="styled-table">
+                <tr>
+                    <th>Approach</th>
+                    <th>Benefits</th>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Establish standardization</strong>:
+                        Use standardized machine images to resolve the practices disparities.
+                    </td>
+                    <td>Teams are neither ahead nor behind in technology choices. And, an intentional synchronization
+                        saves time with testing cycles and minimizes edge cases that may undermine the overall health of
+                        the final deliverable.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Enforce security</strong>:
+                        Security teams can enforce audit and security protocols before the machine
+                        images are released for consumption.
+                    </td>
+                    <td>Infosec can automate testing on the machine image definitions to confirm adherence to protocols
+                        required by the organization.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Optimize efficiency</strong>:
+                        Teams do not have to make *every* technology decision for their images, only the ones that
+                        matter to them.
+                    </td>
+                    <td>The organization can onboard employees faster and delegate duties more efficiently for better
+                        business productivity.</td>
+                </tr>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block last_page %}
+<a href="{{ url_for('uc_01_section_03') }}">
+    <img src="{{ url_for('static', filename='img/left-arrow.svg') }}" alt="Last">
+</a>
+{% endblock %}

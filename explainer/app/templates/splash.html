@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/splash.css') }}">
+<script src="{{ url_for('static', filename='js/splash.js') }}"></script>
+{% endblock %}
+
+{% block main_body %}
+<div class="matrix" id="matrix"></div>
+{% endblock %}

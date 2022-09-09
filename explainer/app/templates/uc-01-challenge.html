@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<style>
+    .main-content {
+        width: var(--instruqt-view-width);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title-wrapper {
+        width: calc(calc(150px * 6) + 80px);
+    }
+
+    .explainer-wrapper {
+        flex-direction: row;
+    }
+
+    .explainer {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        background-color: rgba(173, 216, 230, 0.4);
+        border: solid 5px var(--white);
+        border-radius: 10px;
+        width: 150px;
+    }
+
+    h1,
+    h2 {
+        line-height: 0.5;
+    }
+
+    h3 {
+        height: 50px;
+    }
+</style>
+{% endblock %}
+
+{% block main_body %}
+
+<div class="main-container">
+    <div class="main-content">
+        <div class="title-wrapper">
+            <h1>Anatomy of a Cyber Attack</h1>
+            <h2>MITRE ATT&CK framework</h2>
+        </div>
+        <div class="explainer-wrapper">
+
+            <div class=" explainer" style="--splash-delay: 1;">
+
+                <img class="explainer-icon" src="{{ url_for('static', filename='img/mitre_org_in.svg') }}"
+                    alt="Packer configuration">
+
+                <h3>Initial Access</h3>
+                <p>Attacker accesses your network</p>
+            </div>
+            <div class="explainer" style="--splash-delay: 3;">
+
+                <img class="explainer-icon" src="{{ url_for('static', filename='img/mitre_creds.svg') }}"
+                    alt="Packer configuration">
+
+                <h3>Privilege Escalation</h3>
+                <p>Attacker gains higher level permissions</p>
+            </div>
+
+            <div class=" explainer" style="--splash-delay: 6;">
+
+                <img class="explainer-icon" src="{{ url_for('static', filename='img/mitre_copy_id.svg') }}"
+                    alt="Packer configuration">
+
+                <h3>Crendentials Access</h3>
+                <p>Attacker steals account names and passwords</p>
+            </div>
+            <div class=" explainer" style="--splash-delay: 9;">
+
+                <img class="explainer-icon" src="{{ url_for('static', filename='img/mitre_net_move.svg') }}"
+                    alt="Packer configuration">
+
+                <h3>Lateral Movement</h3>
+                <p>Attacker moves through the environment</p>
+            </div>
+
+            <div class=" explainer" style="--splash-delay: 12;">
+
+                <img class="explainer-icon" src="{{ url_for('static', filename='img/mitre_org_out.svg') }}"
+                    alt="Packer configuration">
+
+                <h3>Exfiltration</h3>
+                <p>Attacker steals or compromises data</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block next_page %}
+<a href="{{ url_for('uc_01_description') }}">
+    <img src="{{ url_for('static', filename='img/right-arrow.svg') }}" alt="Next">
+</a>
+{% endblock %}

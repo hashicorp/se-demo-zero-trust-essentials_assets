@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/forms.css') }}">
+
+<script type="module" src="{{ url_for('static', filename='js/boundary_form_handler.js') }}"></script>
+
+{% endblock %}
+
+{% block main_body %}
+
+<div class="main-container">
+    <div class="main-forms">
+
+        <div class="explainer-wrapper" data-clickable="true">
+            <div class="explainer" style="--splash-delay: 1;">
+                <h1>HCP Boundary</h1>
+                <p>Our demonstration requires you to bring-your-own-bounday (BYOB). Please fill in the required data so
+                    we can use that in the deployment.</p>
+            </div>
+            <div class="explainer" style="--splash-delay: 3">
+                <p>Please refer to the
+                    <strong>
+                        <a href="#" target="_blank">
+                            Getting Started</a>
+                    </strong> guide to learn how configure your own HCP Boundary resources.
+            </div>
+        </div>
+
+        <div class="form-container">
+
+            <div class="form-wrapper" id="boundary-form-display">
+
+                <form action="" method="post" novalidate id="boundary-form" data-confettied="true">
+
+                    {{ boundary_form.hidden_tag() }}
+
+                    {{ boundary_form.boundary_url.label }}
+                    {% if boundary_form.boundary_url.errors %}
+                    <div class="form-errors">
+                        {% for error in boundary_form.boundary_url.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {{ boundary_form.boundary_url(autocomplete="off", value=boundary_url,
+                    required='required') }}
+                    <a href="https://app.terraform.io/app/organizations" target="_blank">
+                        <img src="{{ url_for('static', filename='img/icon-link.svg') }}" alt="boundary Organizations">
+                    </a>
+                    <br>
+
+                    {{ boundary_form.boundary_username.label }}
+                    {% if boundary_form.boundary_username.errors %}
+                    <div class="form-errors">
+                        {% for error in boundary_form.boundary_username.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {{ boundary_form.boundary_username(autocomplete="off", value=boundary_username,
+                    required='required') }}
+                    <a href="https://www.terraform.io/cloud-docs/workspaces/creating" target="_blank">
+                        <img src="{{ url_for('static', filename='img/icon-link.svg') }}" alt="boundary Workspaces">
+                    </a>
+                    <br>
+                    {{ boundary_form.boundary_password.label }}
+                    {% if boundary_form.boundary_password.errors %}
+                    <div class="form-errors">
+                        {% for error in boundary_form.boundary_password.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {{ boundary_form.boundary_password(autocomplete="off", value=boundary_password, required='required')
+                    }}
+                    <a href="https://app.terraform.io/app/settings/tokens" target="_blank">
+                        <img src="{{ url_for('static', filename='img/icon-link.svg') }}" alt="boundary Tokens">
+                    </a>
+                    <br>
+                    {{ boundary_form.boundary_auth_method.label }}
+                    {% if boundary_form.boundary_auth_method.errors %}
+                    <div class="form-errors">
+                        {% for error in boundary_form.boundary_auth_method.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {{ boundary_form.boundary_auth_method(autocomplete="off", value=boundary_auth_method,
+                    required='required')
+                    }}
+                    <a href="https://app.terraform.io/app/settings/tokens" target="_blank">
+                        <img src="{{ url_for('static', filename='img/icon-link.svg') }}" alt="boundary Tokens">
+                    </a>
+                    <br>
+                    {{ boundary_form.save_boundary_data() }}
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block last_page %}
+<a href="{{ url_for('setup_hcp') }}">
+    <img src="{{ url_for('static', filename='img/left-arrow.svg') }}" alt="Last">
+</a>
+{% endblock %}
+
+{% block next_page %}
+<a href="{{ url_for('track_auth') }}">
+    <img src="{{ url_for('static', filename='img/right-arrow.svg') }}" alt="Next">
+</a>
+{% endblock %}

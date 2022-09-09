@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/forms.css') }}">
+
+<script type="module" src="{{ url_for('static', filename='js/hcp_form_handler.js') }}"></script>
+
+{% endblock %}
+
+{% block main_body %}
+
+<div class="main-container">
+    <div class="main-forms">
+
+        <div class="explainer-wrapper" data-clickable="true">
+            <div class="explainer" style="--splash-delay: 1;">
+                <h1>HCP Requirements</h1>
+                <p>This exercise deploys resources in your HCP organization using automation. The deployment will
+                    produce the following:</p>
+                <li>Application environment in AWS</li>
+                <li>HCP Consul Cluster</li>
+                <li>HCP Consul Vault</li>
+                <li>HCP HVN peering with AWS</li>
+
+            </div>
+            <div class="explainer" style="--splash-delay: 3">
+                <p>The deplyment takes about 10-15 minutes to complete. Please ensure to read the
+                    <strong>
+                        <a href="#" target="_blank">
+                            Getting Started</a>
+                    </strong> guide.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-container">
+
+            <div class="form-wrapper" id="hcp-form-display">
+
+                <form action="" method="post" novalidate id="hcp-form" data-confettied="true">
+
+                    {{ hcp_form.hidden_tag() }}
+
+                    {{ hcp_form.client_id.label }}
+                    {% if hcp_form.client_id.errors %}
+                    <div class="form-errors">
+                        {% for error in hcp_form.client_id.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {{ hcp_form.client_id(autocomplete="off", value=client_id, required='required') }}
+                    <a href="https://cloud.hashicorp.com/docs/hcp/admin/access-control/service-principals"
+                        target="_blank">
+                        <img src="{{ url_for('static', filename='img/icon-link.svg') }}" alt="HCP Service Principals">
+                    </a>
+                    <br>
+
+                    {{ hcp_form.client_secret.label }}
+                    {% if hcp_form.client_secret.errors %}
+                    <div class="form-errors">
+                        {% for error in hcp_form.client_secret.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {{ hcp_form.client_secret(autocomplete="off", value=client_secret, required='required') }} <br>
+                    {{ hcp_form.save_hcp_data() }}
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block last_page %}
+<a href="{{ url_for('challenges') }}">
+    <img src="{{ url_for('static', filename='img/left-arrow.svg') }}" alt="Last">
+</a>
+{% endblock %}
+
+{% block next_page %}
+<a href="{{ url_for('setup_boundary') }}">
+    <img src="{{ url_for('static', filename='img/right-arrow.svg') }}" alt="Next">
+</a>
+{% endblock %}

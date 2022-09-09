@@ -1,0 +1,113 @@
+.form-container {
+    position: relative;
+    border-radius: 5px;
+    border: 1px solid var(--gray-5);
+    background-color: #f2f2f2;
+    /* height: 80%; */
+}
+
+.form-wrapper {
+    display: flex;
+    padding: 50px;
+    width: 350px;
+    animation: fadeInUp 3s ease forwards;
+    animation-delay: calc(var(--splash-delay) * 100ms);
+    border-bottom: solid var(--gray-5);
+}
+
+.form-wrapper:last-child {
+    border-bottom: none;
+}
+
+.form-results {
+    display: block;
+}
+
+.form-results p {
+    display: block;
+    line-height: 0.5rem;
+    font-size: medium;
+}
+
+.form-results-text {
+    padding: 12px;
+    border: 1px solid var(--gray-5);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-weight: 700;
+    background-color: var(--white);
+}
+
+/* Style inputs with type="text", select elements and textareas */
+input[type=text],
+input[type=password],
+select,
+textarea {
+    width: 90%;
+    padding: 12px;
+    border: 1px solid var(--gray-5);
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+    background-color: #623CE4;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker color */
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+/* #hcp-form-results {
+    display: none;
+} */
+
+#tfc-form-results {
+    display: none;
+}
+
+#hcp-form-display {
+    visibility: none;
+    display: block;
+}
+
+#tfc-form-display {
+    visibility: none;
+    display: block;
+}
+
+.hcp-form-overlay {
+    position: absolute;
+    background-color: lightblue;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    transition: all .5s ease;
+}
+
+.hcp-form-overlay:hover {
+    opacity: 0.1;
+}
+
+.tfc-form-overlay {
+    position: absolute;
+    background-color: lightblue;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    transition: all .5s ease;
+}
+
+.tfc-form-overlay:hover {
+    opacity: 0.1;
+}

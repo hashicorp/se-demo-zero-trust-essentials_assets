@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<style>
+</style>
+{% endblock %}
+
+{% block main_body %}
+
+<div class="main-container">
+    <div class="main-content">
+        <div class="explainer-wrapper">
+
+            <h1>Summary of benefits</h1>
+            <table class="styled-table">
+                <tr>
+                    <th>Approach</th>
+                    <th>Benefits</th>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Approve images</strong>:
+                        With corporate guidance, teams can automate the promotion of machine images to support emerging
+                        standards.
+                    </td>
+                    <td>Teams can plan for emerging improvements to their machine images and promote them using modern
+                        DevOps automation patterns from development to pre-production to production stages.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Maintain iterations</strong>:
+                        When modifications are identified, teams can quickly upstream and downstream changes with
+                        controlled automation.
+
+                    </td>
+                    <td>Machine images can iterate through revisions as needed, and consuming teams can rely on
+                        acquiring currently authorized versions in their application domain.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Retire images</strong>:
+                        Teams can plan to retire machine images that no longer meet current standards.
+                    </td>
+                    <td>Teams can plan to retire machine images within a grace period and sometimes immediately to avoid
+                        vulnerabilities.</td>
+                </tr>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block last_page %}
+<a href="{{ url_for('uc_03_section_02') }}">
+    <img src="{{ url_for('static', filename='img/left-arrow.svg') }}" alt="Last">
+</a>
+{% endblock %}

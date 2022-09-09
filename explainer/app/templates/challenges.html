@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<style>
+    .main-content {
+        width: var(--instruqt-view-width);
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .explainer-icon {
+        width: 128px;
+        height: 128px;
+    }
+
+    .explainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+{% endblock %}
+
+{% block main_body %}
+
+<div class="main-container">
+    <div class="main-content">
+
+        <div class="explainer-wrapper">
+
+            <div class=" explainer" style="--splash-delay: 1; width: 300px;">
+
+                <img class="explainer-icon" src="{{ url_for('static', filename='img/application_identities.svg') }}"
+                    alt="Packer configuration">
+
+                <h3>Securing Applications & Secrets</h3>
+                <p>By securing applications and secrets, attacks are prevented by ensuring that the
+                    credential are only valid when issued and used, and immediately become invalid afterwards.</p>
+            </div>
+        </div>
+        <div class="explainer-wrapper">
+
+
+            <div class="explainer" style="--splash-delay: 3; width: 300px;">
+
+                <img class="explainer-icon" src="{{ url_for('static', filename='img/network_identities.svg') }}"
+                    alt="Image workflow">
+
+                <h3>Securing Networks & Data</h3>
+                <p>By securing networks and services with HashiCorp, in the likelihood that an outside actor got access
+                    to a machine, it is not possible to access other machines or compromise network traffic.
+                </p>
+            </div>
+        </div>
+        <div class="explainer-wrapper">
+
+            <div class="explainer" style="--splash-delay: 6; width: 300px;">
+
+                <img class="explainer-icon" src="{{ url_for('static', filename='img/user_identities.svg') }}"
+                    alt="Provisioning process">
+
+                <h3>Securing Users</h3>
+                <p>Secure remote access for your entire workforce without having to manage VPNs, share credentials or
+                    exposing your network. Every user is authenticated and every session is authorized.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block last_page %}
+<a href="{{ url_for('about') }}">
+    <img src="{{ url_for('static', filename='img/left-arrow.svg') }}" alt="Last">
+</a>
+{% endblock %}
+
+{% block next_page %}
+<a href="{{ url_for('setup_hcp') }}">
+    <img src="{{ url_for('static', filename='img/right-arrow.svg') }}" alt="Next">
+</a>
+{% endblock %}

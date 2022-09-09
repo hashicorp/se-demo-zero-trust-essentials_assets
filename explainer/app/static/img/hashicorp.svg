@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="190px" height="190px" viewBox="0 0 190 190" version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>hashicorp</title>
+    <g id="logo">
+        <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="190" height="190" rx="10"></rect>
+        <polygon id="Path" fill="#000000" fill-rule="nonzero" points="81.689126 10 15 48.4652817 15 48.4952274 15 140.877784 40.0495976 155.341568 40.0495976 62.9290661 81.689126 38.8976231"></polygon>
+        <polygon id="Path" fill="#000000" fill-rule="nonzero" points="108.310874 10 108.310874 83.5916152 81.689126 83.5916152 81.689126 56.1313869 56.6245555 70.5951713 56.6245555 164.879281 81.689126 179.373011 81.689126 105.991016 108.310874 105.991016 108.310874 133.27157 133.360472 118.807786 133.360472 24.4637844"></polygon>
+        <polygon id="Path" fill="#000000" fill-rule="nonzero" points="108.310874 179.402957 175 140.937675 175 140.90773 175 48.5251731 149.93543 34.0613887 149.93543 126.473891 108.310874 150.505334"></polygon>
+    </g>
+</svg>

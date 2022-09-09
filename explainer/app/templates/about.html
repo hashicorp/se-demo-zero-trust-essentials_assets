@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block main_body %}
+
+<div class="main-container">
+    <div class="main-content">
+
+        <div class="explainer-wrapper">
+
+            <div class="explainer" style="--splash-delay: 1; width:525px;">
+                <h1>Zero Trust Security Essentials</h1>
+                <p>This demonstration explores HashiCorp’s model around zero trust security so organizations can manage
+                    their transition to the cloud while maintaining the level of security needed.
+                </p>
+            </div>
+
+            <div class="explainer" style="--splash-delay: 3; width:525px;">
+                <p>There are three self-contained scenarios in this demonstration. Please ensure to read the <strong>
+                        <a href="#" target="_blank">
+                            Getting Started</a>
+                    </strong> and
+                    <strong>
+                        <a href="#" target="_blank">
+                            Demo Guide</a>
+                    </strong>
+                    documentation to familiarize yourself with the setup, challenges,
+                    narrative and the steps to showcase during this session.
+                </p>
+            </div>
+
+            <div class="explainer" style="--splash-delay: 6; width:525px;">
+                <p>For feedback about this demonstration, contact the Innovation Lab team on the Slack
+                    channel
+                    <strong><a href="https://hashicorp.slack.com/archives/C03KMLPCX62"
+                            target="_blank">#team-se-innovation-lab</a></strong>.
+                    <br><br>
+                    For issues with upcoming or in-progress content, use tag @team-innovation-lab in
+                    <strong><a href="https://hashicorp.slack.com/archives/CGYB4R3NX"
+                            target="_blank">#proj-instruqt</a></strong>.
+
+                    <i>Please note that resonse outside of North America hours is not immediate at this time.</i>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block next_page %}
+<a href="{{ url_for('challenges') }}">
+    <img src="{{ url_for('static', filename='img/right-arrow.svg') }}" alt="Next">
+</a>
+{% endblock %}

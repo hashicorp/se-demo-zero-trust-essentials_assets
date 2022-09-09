@@ -1,0 +1,255 @@
+:root {
+    --splash-general-delay: 100ms;
+
+    /* Brand override */
+    --brand-gradient: linear-gradient(50.7deg, #63d0ff 0%, #844fba 50%, #63d0ff 100%);
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.matrix {
+    display: inline-grid;
+    grid-template-columns: repeat(12, 50px);
+    grid-template-rows: repeat(12, 50px);
+}
+
+.cell {
+    position: relative;
+    opacity: 0;
+    -webkit-animation:
+        fadeIn calc(var(--splash-general-delay) * 8) linear calc(var(--splash-general-delay) * 1) 1 forwards,
+        fadeOut calc(var(--splash-general-delay) * 8) linear calc(var(--splash-general-delay) * 30) 1 forwards;
+    animation:
+        fadeIn calc(var(--splash-general-delay) * 8) linear calc(var(--splash-general-delay) * 1) 1 forwards,
+        fadeOut calc(var(--splash-general-delay) * 8) linear calc(var(--splash-general-delay) * 30) 1 forwards;
+}
+
+.cell .line-left {
+    height: 3px;
+    background-image: var(--brand-gradient);
+    position: absolute;
+    top: 0px;
+    right: 0;
+    -webkit-animation: animate_left var(--splash-general-delay) linear forwards;
+    -webkit-animation-delay: calc(var(--splash-delay) * var(--splash-general-delay));
+
+    animation: animate_left var(--splash-general-delay) linear forwards;
+    animation-delay: calc(var(--splash-delay) * var(--splash-general-delay));
+}
+
+.cell .line-right {
+    height: 3px;
+    background-image: var(--brand-gradient);
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-animation: animate_right var(--splash-general-delay) linear forwards;
+    -webkit-animation-delay: calc(var(--splash-delay) * var(--splash-general-delay));
+
+    animation: animate_right var(--splash-general-delay) linear forwards;
+    animation-delay: calc(var(--splash-delay) * var(--splash-general-delay));
+}
+
+.cell .line-right-bottom {
+    height: 3px;
+    background-image: var(--brand-gradient);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    -webkit-animation: animate_right var(--splash-general-delay) linear forwards;
+    -webkit-animation-delay: calc(var(--splash-delay) * var(--splash-general-delay));
+
+    animation: animate_right var(--splash-general-delay) linear forwards;
+    animation-delay: calc(var(--splash-delay) * var(--splash-general-delay));
+}
+
+.cell .line-up {
+    width: 3px;
+    background-image: var(--brand-gradient);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    -webkit-animation: animate_up var(--splash-general-delay) linear forwards;
+    -webkit-animation-delay: calc(var(--splash-delay) * var(--splash-general-delay));
+
+    animation: animate_up var(--splash-general-delay) linear forwards;
+    animation-delay: calc(var(--splash-delay) * var(--splash-general-delay));
+}
+
+.cell .line-down {
+    width: 3px;
+    background-image: var(--brand-gradient);
+    position: absolute;
+    left: 0;
+    top: 0;
+    -webkit-animation: animate_down var(--splash-general-delay) linear forwards;
+    -webkit-animation-delay: calc(var(--splash-delay) * var(--splash-general-delay));
+
+    animation: animate_down var(--splash-general-delay) linear forwards;
+    animation-delay: calc(var(--splash-delay) * var(--splash-general-delay));
+}
+
+.cell-span-4 {
+    border-radius: 10px;
+    grid-column: span 4;
+    grid-row: span 4;
+}
+
+#hashicorp-logo {
+    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--brand-accent);
+    background-image: var(--brand-gradient);
+    box-sizing: border-box;
+    box-shadow: -11px -11px 22px rgba(209, 217, 230, 0.5), 11px 11px 22px rgba(209, 217, 230, 0.5), inset -11px -11px 22px rgba(255, 255, 255, 0.5);
+}
+
+#logo {
+    opacity: 0;
+    animation:
+        fadeIn calc(var(--splash-general-delay) * 7) linear calc(var(--splash-general-delay) * 4) 1 forwards;
+    /* shake calc(var(--splash-general-delay) * 14) linear calc(var(--splash-general-delay) * 30) 1 forwards; */
+}
+
+@keyframes animate_left {
+    0% {
+        left: 100%;
+    }
+
+    50% {
+        left: 50%;
+    }
+
+    100% {
+        left: 0;
+    }
+}
+
+@keyframes animate_right {
+    0% {
+        right: 100%;
+    }
+
+    50% {
+        right: 50%;
+    }
+
+    100% {
+        right: 0;
+    }
+}
+
+@keyframes animate_up {
+    0% {
+        top: 100%;
+    }
+
+    50% {
+        top: 50%;
+    }
+
+    100% {
+        top: 0;
+    }
+}
+
+@keyframes animate_down {
+    0% {
+        bottom: 100%;
+    }
+
+    50% {
+        bottom: 50%;
+    }
+
+    100% {
+        bottom: 0;
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(150%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
