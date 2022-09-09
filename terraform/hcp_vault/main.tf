@@ -36,7 +36,7 @@ resource "vault_database_secret_backend_role" "product" {
   backend               = vault_mount.postgres.path
   name                  = "product"
   db_name               = vault_database_secret_backend_connection.postgres.name
-  creation_statements   = ["CREATE ROLE \"{{username}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}'; GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{username}}\";"]
+  creation_statements   = ["CREATE ROLE \"{{username}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}'; GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO \"{{username}}\";"]
   revocation_statements = ["ALTER ROLE \"{{username}}\" NOLOGIN;"]
   default_ttl           = 604800
   max_ttl               = 604800
@@ -53,6 +53,21 @@ data "vault_policy_document" "product" {
 resource "vault_policy" "product" {
   name   = "product"
   policy = data.vault_policy_document.product.hcl
+}
+
+resource "vault_auth_backend" "approle" {
+  type = "approle"
+}
+
+resource "vault_approle_auth_backend_role" "agent" {
+  backend        = vault_auth_backend.approle.path
+  role_name      = "agent"
+  token_policies = [vault_policy.boundary_controller.name, vault_policy.ssh_cred_injection.name, vault_policy.product.name]
+}
+
+resource "vault_approle_auth_backend_role_secret_id" "id" {
+  backend   = vault_auth_backend.approle.path
+  role_name = vault_approle_auth_backend_role.agent.role_name
 }
 
 data "local_file" "private_ssh_key" {

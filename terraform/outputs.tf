@@ -91,6 +91,15 @@ output "vault_token_for_boundary_credentials_store" {
   value     = module.hcp_vault.vault_token_for_boundary_credentials_store
 }
 
+output "vault_agent_app_role_id" {
+  value = module.hcp_vault.vault_agent_app_role_id
+}
+
+output "vault_agent_app_role_secret_id" {
+  sensitive = true
+  value     = module.hcp_vault.vault_agent_app_role_secret_id
+}
+
 # HCP Boundary data
 
 output "boundary_target_ec2" {

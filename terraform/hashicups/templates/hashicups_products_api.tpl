@@ -94,9 +94,10 @@ sudo mv spring-boot-payments-$APP_VERSION.jar $APP_HOME
 # Having all of the properties loaded does not
 # affect the default functionality; the properties
 # are required because we're overriding the default.
+export IP_ADDR=$(hostname -I | tr -d ' ')
 sudo mkdir -p $APP_HOME/default
 cat << EOF > /tmp/application.properties
-server.address=127.0.0.1
+server.address=$IP_ADDR
 server.port=8081
 app.storage=disabled
 app.encryption.path=transit
@@ -114,10 +115,9 @@ EOF
 sudo mv /tmp/application.properties $APP_HOME/default
 
 # Vault properties for Payments App
-export IP_ADDR=$(hostname -I | tr -d ' ')
 sudo mkdir -p $APP_HOME/secure
 cat << EOF > /tmp/application.properties
-server.address=$IP_ADDR
+server.address=127.0.0.1
 server.port=8081
 app.storage=redis
 app.encryption.path=transit
