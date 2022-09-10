@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block main_body %}
+
+<div class="main-container">
+    <div class="main-content">
+
+        <div class="explainer-wrapper">
+            <div class="explainer" style="--splash-delay: 1;">
+                <h1>HashiCorp Boundary</h1>
+                <p>Ephemeral access model based on trusted identity ensures the right roles gain access to the right
+                    services</p>
+
+            </div>
+            <div class="explainer" style="--splash-delay: 3">
+                <p>Integrate with Vault to broker secrets to Boundary clients via the command line and desktop clients
+                    for use in Boundary sessions.
+                </p>
+            </div>
+        </div>
+
+        <div class="explainer-wrapper">
+            <div class="explainer" style="--splash-delay: 1;">
+                <img src="{{ url_for('static', filename='img/uc-04-example.svg') }}" alt="Vault">
+                <span class="tooltiptext" id="tooltiptext">Vault authentication and authorization chain</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block last_page %}
+<a href="{{ url_for('uc_04_challenge') }}">
+    <img src="{{ url_for('static', filename='img/left-arrow.svg') }}" alt="Last">
+</a>
+{% endblock %}
+
+
+{% block next_page %}
+<a href="{{ url_for('uc_04_section_02') }}">
+    <img src="{{ url_for('static', filename='img/right-arrow.svg') }}" alt="Next">
+</a>
+{% endblock %}

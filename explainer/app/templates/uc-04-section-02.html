@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<style>
+</style>
+{% endblock %}
+
+{% block main_body %}
+
+<div class="main-container">
+    <div class="main-content">
+        <div class="slide-content">
+
+            <div class="explainer-wrapper">
+                <h1>Brokering of Secrets</h1>
+                <p>Boundary provides access to applications and critical systems with fine-grained authorizations
+                    without managing credentials or exposing your network. Inject SSH credentials into sessions via
+                    Vault-managed secrets.
+                </p>
+                <br>
+                <img src="{{ url_for('static', filename='img/uc-04-section-02.svg') }}" alt="Vault">
+                <span class="tooltiptext" id="tooltiptext">Centralize Private Key</span>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block last_page %}
+<a href="{{ url_for('uc_04_section_01') }}">
+    <img src="{{ url_for('static', filename='img/left-arrow.svg') }}" alt="Last">
+</a>
+{% endblock %}
+
+
+{% block next_page %}
+<a href="{{ url_for('uc_04_section_03') }}">
+    <img src="{{ url_for('static', filename='img/right-arrow.svg') }}" alt="Next">
+</a>
+{% endblock %}

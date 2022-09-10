@@ -233,3 +233,19 @@ def uc_03_section_02():
 @app.route('/uc-03-section-03')
 def uc_03_section_03():
   return render_template('uc-03-section-03.html')
+
+@app.route('/uc-04-challenge')
+def uc_04_challenge():
+  return render_template('uc-04-challenge.html')
+
+@app.route('/uc-04-section-01')
+def uc_04_section_01():
+  return render_template('uc-04-section-01.html')
+
+@app.route('/uc-04-section-02')
+def uc_04_section_02():
+  return render_template('uc-04-section-02.html')
+
+@app.route('/uc-04-section-03')
+def uc_04_section_03():
+  return render_template('uc-04-section-03.html')

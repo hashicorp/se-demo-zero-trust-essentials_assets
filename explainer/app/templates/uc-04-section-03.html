@@ -13,13 +13,14 @@
         <div class="slide-content">
 
             <div class="explainer-wrapper">
-                <h1>Secure Application Data </h1>
-                <p>Vault provides encryption as a service using various encryption schemes that
-                    include AES-GCM, ChasCha20, ED25519, ECDSA and RSA. The encryption is applicable
-                    to inline applications records and data at rest.
+                <h1>Brokering Dynamic Secrets</h1>
+                <p>Boundary provides a single workflow that allows engineers and developers to access a
+                    database from their local development environment. These dynamic secrets can be generated on-demand,
+                    providing just-in-time credentials that are short-lived, along with being able to revoke access, and
+                    continuously rotate secrets.
                 </p>
                 <br>
-                <img src="{{ url_for('static', filename='img/uc-03-section-03.svg') }}" alt="Vault">
+                <img src="{{ url_for('static', filename='img/uc-04-section-03.svg') }}" alt="Vault">
                 <span class="tooltiptext" id="tooltiptext">Automated workflow for DB Secrets</span>
             </div>
 
@@ -32,7 +33,7 @@
 {% endblock %}
 
 {% block last_page %}
-<a href="{{ url_for('uc_03_section_02') }}">
+<a href="{{ url_for('uc_04_section_02') }}">
     <img src="{{ url_for('static', filename='img/left-arrow.svg') }}" alt="Last">
 </a>
 {% endblock %}

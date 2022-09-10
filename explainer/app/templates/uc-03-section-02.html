@@ -12,12 +12,16 @@
         <div class="slide-content">
 
             <div class="explainer-wrapper">
-                <h1>Terraform Cloud Run Task for HCP Packer</h1>
-                <p>Validate image resources to ensure they are currently approved, and monitor for
-                    hard-coded image IDs to ensure compliance.
+                <h1>Protect Network Communication</h1>
+                <p>Consul registers service identities for each application layer in a central catalog. When a
+                    service comes online, a TLS certificate ensures secure connectivity with the rest of the
+                    mesh. To establish and accept connection to and from other services, an mTLS connection is required,
+                    this is accomplished through the client service verifying the destination service certification
+                    against a trusted CA bundle.
                 </p>
-                <img src="{{ url_for('static', filename='img/uc-03-TFC_run_task.svg') }}" alt="TFC Run Task">
-                <span class="tooltiptext" id="tooltiptext">Run Tasks validate workflow items</span>
+                <br>
+                <img src="{{ url_for('static', filename='img/uc-03-section-02.svg') }}" alt="Vault">
+                <span class="tooltiptext" id="tooltiptext">Centralize Private Key</span>
             </div>
 
         </div>
