@@ -178,14 +178,6 @@ def getHCPBearerToken():
 def uc_01_challenge():
   return render_template('uc-01-challenge.html')
 
-@app.route('/uc-01-description')
-def uc_01_description():
-  return render_template('uc-01-description.html')
-
-@app.route('/uc-01-example')
-def uc_01_example():
-  return render_template('uc-01-example.html')
-
 @app.route('/uc-01-section-01')
 def uc_01_section_01():
   return render_template('uc-01-section-01.html')
@@ -198,9 +190,9 @@ def uc_01_section_02():
 def uc_01_section_03():
   return render_template('uc-01-section-03.html')
 
-@app.route('/uc-01-summary')
-def uc_01_summary():
-  return render_template('uc-01-summary.html')
+@app.route('/uc-01-section-04')
+def uc_01_section_04():
+  return render_template('uc-01-section-04.html')
 
 @app.route('/uc-02-challenge')
 def uc_02_challenge():
@@ -249,3 +241,7 @@ def uc_04_section_02():
 @app.route('/uc-04-section-03')
 def uc_04_section_03():
   return render_template('uc-04-section-03.html')
+
+@app.route('/cleanup-thank-you')
+def cleanup_thank_you():
+  return render_template('cleanup-thank-you.html')

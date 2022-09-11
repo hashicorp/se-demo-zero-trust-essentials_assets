@@ -13,12 +13,13 @@
         <div class="slide-content">
 
             <div class="explainer-wrapper">
-                <h1>Automate with HCP Packer and Terraform</h1>
-                <p>With HCP Packer, consumers inherit standards and do not need to make *every*
-                    technology decision for the images that support their deployments.</p>
+                <h1>Stage 03: Untethered Access</h1>
+                <p>The attacker now had access to an array of systems, datacenters, and networks. The attacker
+                    concentrates on finding targets of value.
+                </p>
                 <br>
-                <img src="{{ url_for('static', filename='img/uc-01-terraform_deploy_instance.svg') }}" alt="Vault">
-                <span class="tooltiptext" id="tooltiptext">Controlled deployment</span>
+                <img src="{{ url_for('static', filename='img/aoab-stage-3.svg') }}" alt="Vault">
+                <span class="tooltiptext" id="tooltiptext">Finding targets of value</span>
             </div>
 
         </div>
@@ -36,7 +37,7 @@
 
 
 {% block next_page %}
-<a href="{{ url_for('uc_01_summary') }}">
+<a href="{{ url_for('uc_01_section_04') }}">
     <img src="{{ url_for('static', filename='img/right-arrow.svg') }}" alt="Next">
 </a>
 {% endblock %}

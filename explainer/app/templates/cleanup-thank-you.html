@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+
+<script type="module" src="{{ url_for('static', filename='js/svg-load.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/confetti.min.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/happy.css') }}">
+
+
+{% endblock %}
+
+{% block main_body %}
+
+<div class="main-wrapper">
+    <div class="svg-diagram" id="svg-diagram">
+    </div>
+</div>
+
+<script>
+
+    // start
+
+    const start = () => {
+        setTimeout(function () {
+            confetti.start()
+        }, 1000); // 1000 is time that after 1 second start the confetti ( 1000 = 1 sec)
+    };
+
+    //  Stop
+
+    const stop = () => {
+        setTimeout(function () {
+            confetti.stop()
+        }, 5000); // 5000 is time that after 5 second stop the confetti ( 5000 = 5 sec)
+    };
+
+    start();
+    stop();
+</script>
+
+
+{% endblock %}

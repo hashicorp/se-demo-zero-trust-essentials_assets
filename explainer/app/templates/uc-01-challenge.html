@@ -51,7 +51,7 @@
             <div class=" explainer" style="--splash-delay: 1;">
 
                 <img class="explainer-icon" src="{{ url_for('static', filename='img/mitre_org_in.svg') }}"
-                    alt="Packer configuration">
+                    alt="Initial Access">
 
                 <h3>Initial Access</h3>
                 <p>Attacker accesses your network</p>
@@ -59,7 +59,7 @@
             <div class="explainer" style="--splash-delay: 3;">
 
                 <img class="explainer-icon" src="{{ url_for('static', filename='img/mitre_creds.svg') }}"
-                    alt="Packer configuration">
+                    alt="Privilege Escalation">
 
                 <h3>Privilege Escalation</h3>
                 <p>Attacker gains higher level permissions</p>
@@ -68,7 +68,7 @@
             <div class=" explainer" style="--splash-delay: 6;">
 
                 <img class="explainer-icon" src="{{ url_for('static', filename='img/mitre_copy_id.svg') }}"
-                    alt="Packer configuration">
+                    alt="Crendentials Access">
 
                 <h3>Crendentials Access</h3>
                 <p>Attacker steals account names and passwords</p>
@@ -76,7 +76,7 @@
             <div class=" explainer" style="--splash-delay: 9;">
 
                 <img class="explainer-icon" src="{{ url_for('static', filename='img/mitre_net_move.svg') }}"
-                    alt="Packer configuration">
+                    alt="Lateral Movement">
 
                 <h3>Lateral Movement</h3>
                 <p>Attacker moves through the environment</p>
@@ -85,7 +85,7 @@
             <div class=" explainer" style="--splash-delay: 12;">
 
                 <img class="explainer-icon" src="{{ url_for('static', filename='img/mitre_org_out.svg') }}"
-                    alt="Packer configuration">
+                    alt="Data Exfiltration">
 
                 <h3>Exfiltration</h3>
                 <p>Attacker steals or compromises data</p>
@@ -98,7 +98,7 @@
 {% endblock %}
 
 {% block next_page %}
-<a href="{{ url_for('uc_01_description') }}">
+<a href="{{ url_for('uc_01_section_01') }}">
     <img src="{{ url_for('static', filename='img/right-arrow.svg') }}" alt="Next">
 </a>
 {% endblock %}

@@ -2,8 +2,6 @@
 
 {% block head %}
 {{ super() }}
-<style>
-</style>
 {% endblock %}
 
 {% block main_body %}
@@ -13,13 +11,14 @@
         <div class="slide-content">
 
             <div class="explainer-wrapper">
-                <h1>Stage 04: Data Loss</h1>
-                <p>The attacker finds targets of value and is able to either exfiltrate data in bulk,
-                    or compromise sensitive data.
+                <h1>Stage 02: Unrestricted Privileges</h1>
+                <p>The attacker is able to traverse the networks and systems with with the
+                    help of planted RATS and network probing.
                 </p>
                 <br>
-                <img src="{{ url_for('static', filename='img/aoab-stage-4.svg') }}" alt="Vault">
-                <span class="tooltiptext" id="tooltiptext">Basic inconsistencies</span>
+                <img src="{{ url_for('static', filename='img/aoab-stage-2.svg') }}" alt="Vault">
+                <span class="tooltiptext" id="tooltiptext">The attacker is able to traverse the networks and
+                    systems</span>
             </div>
 
         </div>
@@ -27,11 +26,17 @@
     </div>
 </div>
 
-
 {% endblock %}
 
 {% block last_page %}
 <a href="{{ url_for('uc_01_section_01') }}">
     <img src="{{ url_for('static', filename='img/left-arrow.svg') }}" alt="Last">
+</a>
+{% endblock %}
+
+
+{% block next_page %}
+<a href="{{ url_for('uc_01_section_03') }}">
+    <img src="{{ url_for('static', filename='img/right-arrow.svg') }}" alt="Next">
 </a>
 {% endblock %}
