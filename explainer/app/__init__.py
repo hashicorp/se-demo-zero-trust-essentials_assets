@@ -16,10 +16,10 @@ class HCPForm(FlaskForm):
     save_hcp_data   = SubmitField('Save')
 
 class boundaryForm(FlaskForm):
-    boundary_url          = StringField('URL', validators=[InputRequired(message='Required')])
-    boundary_username     = StringField('User Name', validators=[InputRequired(message='Required')])
-    boundary_password     = StringField('User Password', validators=[InputRequired(message='Required')])
-    boundary_auth_method  = StringField('Auth Method ID', validators=[InputRequired(message='Required')])
+    boundary_url          = StringField('Controller URL', validators=[InputRequired(message='Required')])
+    boundary_username     = StringField('Boundary User Name', validators=[InputRequired(message='Required')])
+    boundary_password     = StringField('Boundary User Password', validators=[InputRequired(message='Required')])
+    boundary_auth_method  = StringField('Boundary Auth Method ID', validators=[InputRequired(message='Required')])
     save_boundary_data    = SubmitField('Save')
 
 @app.route('/')

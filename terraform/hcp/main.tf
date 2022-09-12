@@ -1,18 +1,11 @@
-variable "vpc_id" {}
-variable "vpc_region" {}
-variable "hvn_region" {}
-variable "public_subnet" {}
-variable "public_route_table_id" {}
-variable "security_group_id" {}
-
 resource "random_integer" "random_id" {
   min = 100000
   max = 999999
 }
 
 locals {
-  cluster_id = "zero-thrust-${random_integer.random_id.result}"
-  hvn_id     = "zero-thrust-${random_integer.random_id.result}"
+  cluster_id = "${var.name_prefix}-${random_integer.random_id.result}"
+  hvn_id     = "${var.name_prefix}-${random_integer.random_id.result}"
 }
 
 terraform {
