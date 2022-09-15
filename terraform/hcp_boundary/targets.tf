@@ -1,5 +1,5 @@
 resource "boundary_target" "backend_servers_ssh" {
-  type                     = "tcp"
+  type                     = "ssh"
   name                     = "backend_servers_ssh"
   description              = "Backend SSH target"
   scope_id                 = boundary_scope.cloudops.id
