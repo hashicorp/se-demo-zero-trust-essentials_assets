@@ -35,10 +35,10 @@ window.onload = function () {
     const boundary_form = document.getElementById("boundary-form");
     const input_divs = [].slice.call(boundary_form.querySelectorAll('input[type="text"]'));
 
-    input_divs.forEach(element => {
-        element.addEventListener('focus', onFocus);
-        element.addEventListener('blur', onBlur);
-    });
+    // input_divs.forEach(element => {
+    //     element.addEventListener('focus', onFocus);
+    //     element.addEventListener('blur', onBlur);
+    // });
 
     boundary_form.addEventListener('submit', () => {
         localStorage.do_TFC_Confetti = 'true';

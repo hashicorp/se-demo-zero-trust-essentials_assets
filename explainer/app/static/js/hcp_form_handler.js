@@ -35,10 +35,10 @@ window.onload = function () {
     const hcp_form = document.getElementById("hcp-form");
     const input_divs = [].slice.call(hcp_form.querySelectorAll('input[type="text"]'));
 
-    input_divs.forEach(element => {
-        element.addEventListener('focus', onFocus);
-        element.addEventListener('blur', onBlur);
-    });
+    // input_divs.forEach(element => {
+    //     element.addEventListener('focus', onFocus);
+    //     element.addEventListener('blur', onBlur);
+    // });
 
     hcp_form.addEventListener('submit', () => {
         localStorage.do_HCP_Confetti = 'true';
