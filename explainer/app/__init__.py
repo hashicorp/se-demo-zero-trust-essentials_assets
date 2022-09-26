@@ -150,8 +150,10 @@ def track_auth():
 
 def writeToLocalConfigFile():
 
-  EXPLAINER_HOME = os.getenv('EXPLAINER_HOME')
-  fo = open(EXPLAINER_HOME + "/.deployment_data", "w")
+
+  EXPLAINER_HOME = os.environ.get('EXPLAINER_HOME') or "/root/explainer"
+  EXPLAINER_DATA = EXPLAINER_HOME + "/.deployment_data"
+  fo = open(EXPLAINER_DATA, "w")
   
   filebuffer = "# HCP Access\nexport HCP_CLIENT_ID=\"{}\"\nexport HCP_CLIENT_SECRET=\"{}\"".format(
     session.get('hcp_client_id'), 
@@ -160,8 +162,9 @@ def writeToLocalConfigFile():
 
   fo.close()
 
-  TERRAFORM_HOME = os.getenv('TERRAFORM_HOME')
-  fo = open(TERRAFORM_HOME + "/terraform.auto.tfvars", "w")
+  TERRAFORM_HOME = os.environ.get('TERRAFORM_HOME') or "/root/terraform"
+  TERRAFORM_DATA = TERRAFORM_HOME + "/terraform.auto.tfvars"
+  fo = open(TERRAFORM_DATA, "w")
 
   filebuffer = "# User-provided label for HCP Boundary instance\ncontroller_url = \"{}\"\nbootstrap_user_login_name = \"{}\"\nbootstrap_user_password = \"{}\"\nauth_method_id = \"{}\"\n".format(
     session.get('boundary_url'), 
