@@ -45,8 +45,7 @@
                         {% endfor %}
                     </div>
                     {% endif %}
-                    {{ boundary_form.boundary_url(autocomplete="off", value=boundary_url,
-                    required='required') }}
+                    {{ boundary_form.boundary_url(autocomplete="off", value=boundary_url, required='required') }}
                     <a href="https://learn.hashicorp.com/tutorials/boundary/hcp-getting-started-console?in=boundary/hcp-getting-started"
                         target="_blank">
                         <img src="{{ url_for('static', filename='img/icon-link.svg') }}"
@@ -62,8 +61,7 @@
                         {% endfor %}
                     </div>
                     {% endif %}
-                    {{ boundary_form.boundary_username(autocomplete="off", value=boundary_username,
-                    required='required') }}
+                    {{ boundary_form.boundary_username(autocomplete="off", value=boundary_username, required='required') }}
                     <br>
                     {{ boundary_form.boundary_password.label }}
                     {% if boundary_form.boundary_password.errors %}
@@ -73,8 +71,7 @@
                         {% endfor %}
                     </div>
                     {% endif %}
-                    {{ boundary_form.boundary_password(autocomplete="off", value=boundary_password, required='required')
-                    }}
+                    {{ boundary_form.boundary_password(autocomplete="off", value=boundary_password, required='required') }}
                     <br>
                     {{ boundary_form.boundary_auth_method.label }}
                     {% if boundary_form.boundary_auth_method.errors %}
@@ -84,9 +81,7 @@
                         {% endfor %}
                     </div>
                     {% endif %}
-                    {{ boundary_form.boundary_auth_method(autocomplete="off", value=boundary_auth_method,
-                    required='required')
-                    }}
+                    {{ boundary_form.boundary_auth_method(autocomplete="off", value=boundary_auth_method, required='required') }}
                     <br>
                     {{ boundary_form.save_boundary_data() }}
 

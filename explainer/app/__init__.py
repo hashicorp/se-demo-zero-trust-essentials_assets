@@ -12,13 +12,13 @@ app.config['SECRET_KEY'] = 'correct-horse-battery-staple'
 
 class HCPForm(FlaskForm):
     client_id       = StringField('HCP Client ID', validators=[InputRequired(message='Required')])
-    client_secret   = StringField('HCP Client Secret', validators=[InputRequired(message='Required')])
+    client_secret   = PasswordField('HCP Client Secret', validators=[InputRequired(message='Required')])
     save_hcp_data   = SubmitField('Save')
 
 class boundaryForm(FlaskForm):
     boundary_url          = StringField('Controller URL', validators=[InputRequired(message='Required')])
     boundary_username     = StringField('Boundary User Name', validators=[InputRequired(message='Required')])
-    boundary_password     = StringField('Boundary User Password', validators=[InputRequired(message='Required')])
+    boundary_password     = PasswordField('Boundary User Password', validators=[InputRequired(message='Required')], id='boundary_password')
     boundary_auth_method  = StringField('Boundary Auth Method ID', validators=[InputRequired(message='Required')])
     save_boundary_data    = SubmitField('Save')
 
@@ -150,15 +150,24 @@ def track_auth():
 
 def writeToLocalConfigFile():
 
-  HOME = os.getenv('HOME')
-  print(HOME)
-
-  fo = open(".deployment_data", "w")
+  EXPLAINER_HOME = os.getenv('EXPLAINER_HOME')
+  fo = open(EXPLAINER_HOME + "/.deployment_data", "w")
   
-  filebuffer = "# HCP Access\nexport HCP_CLIENT_ID=\"{}\"\nexport HCP_CLIENT_SECRET=\"{}\"".format(session.get('hcp_client_id'), session.get('hcp_client_secret'))
+  filebuffer = "# HCP Access\nexport HCP_CLIENT_ID=\"{}\"\nexport HCP_CLIENT_SECRET=\"{}\"".format(
+    session.get('hcp_client_id'), 
+    session.get('hcp_client_secret'))
   fo.writelines(filebuffer)
-  
-  filebuffer = "\n\n# Boundary Data\nexport TF_VAR_controller_url=\"{}\"\nexport TF_VAR_bootstrap_user_password=\"{}\"\nexport TF_VAR_bootstrap_user_login_name=\"{}\"\nexport TF_VAR_auth_method_id=\"{}\"\n".format(session.get('boundary_url'), session.get('boundary_password'), session.get('boundary_username'), session.get('boundary_auth_method'))
+
+  fo.close()
+
+  TERRAFORM_HOME = os.getenv('TERRAFORM_HOME')
+  fo = open(TERRAFORM_HOME + "/terraform.auto.tfvars", "w")
+
+  filebuffer = "# User-provided label for HCP Boundary instance\ncontroller_url = \"{}\"\nbootstrap_user_login_name = \"{}\"\nbootstrap_user_password = \"{}\"\nauth_method_id = \"{}\"\n".format(
+    session.get('boundary_url'), 
+    session.get('boundary_password'), 
+    session.get('boundary_username'), 
+    session.get('boundary_auth_method'))
   fo.writelines(filebuffer)
   
   fo.close()
