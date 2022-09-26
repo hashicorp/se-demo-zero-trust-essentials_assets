@@ -168,8 +168,8 @@ def writeToLocalConfigFile():
 
   filebuffer = "# User-provided label for HCP Boundary instance\ncontroller_url = \"{}\"\nbootstrap_user_login_name = \"{}\"\nbootstrap_user_password = \"{}\"\nauth_method_id = \"{}\"\n".format(
     session.get('boundary_url'), 
-    session.get('boundary_password'), 
     session.get('boundary_username'), 
+    session.get('boundary_password'), 
     session.get('boundary_auth_method'))
   fo.writelines(filebuffer)
   
