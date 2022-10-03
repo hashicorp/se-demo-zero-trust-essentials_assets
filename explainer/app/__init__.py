@@ -220,16 +220,11 @@ def resources():
     if target_key in json_data:
       keypair = {key: json_data[target_key]["value"]}
       data.update(keypair)
-      print("\t", json_data[target_key]["value"])
-    else:
-      keypair = {key: "not available"}
 
   # Handle special case for Vault admin token
   if "vault_admin_token" in json_data:
     keypair = {"vault_token": json_data["vault_admin_token"]["value"]["token"]}
     data.update(keypair)
-  else:
-    keypair = {"vault_token": "not available"}
   
   return render_template('resources.html', resources_data=data)
 
