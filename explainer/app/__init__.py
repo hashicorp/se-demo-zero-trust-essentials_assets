@@ -1,3 +1,4 @@
+from token import EXACT_TOKEN_TYPES
 from flask import Flask
 from flask import render_template, flash, request, session, redirect, url_for
 
@@ -199,28 +200,37 @@ def resources():
     json_data = json.load(deployment_data)
     deployment_data.close()
 
-  # HashiCups Resources
-  hashicups = {
-    'hashicups_frontend_url'    : json_data["frontend_url"]["value"],
-    'hashicups_public_api_url'  : json_data["public_api_url"]["value"],
-    'hashicups_product_api_url' : json_data["products_url"]["value"],
-    'hashicups_payments_url'    : json_data["payments_host_test"]["value"]
+  data = {}
+
+  required_fields = {
+    "hashicups_frontend_url": "frontend_url",
+    "hashicups_public_api_url": "public_api_url",
+    "hashicups_product_api_url": "products_url",
+    "hashicups_payments_url": "payments_host_test",
+    "boundary_url": "boundary_endpoint",
+    "boundary_user": "boundary_user",
+    "boundary_token": "boundary_password",
+    "consul_url": "consul_url",
+    "consul_token": "consul_root_token",
+    "vault_url" : "vault_public_endpoint_url"
   }
 
-  # HCP Resources
-  hcp = {
-    "boundary_url"   : json_data["boundary_endpoint"]["value"],
-    "boundary_user"  : json_data["boundary_user"]["value"],
-    "boundary_token" : json_data["boundary_password"]["value"],
-    "consul_url"     : json_data["consul_url"]["value"],
-    "consul_token"   : json_data["consul_root_token"]["value"],
-    "vault_url"      : json_data["vault_public_endpoint_url"]["value"],
-    "vault_token"    : json_data["vault_admin_token"]["value"]["token"]
-  }
- 
-  data = hashicups
-  data.update(hcp)
+  for key in required_fields:
+    target_key = required_fields[key]
+    if target_key in json_data:
+      keypair = {key: json_data[target_key]["value"]}
+      data.update(keypair)
+      print("\t", json_data[target_key]["value"])
+    else:
+      keypair = {key: "not available"}
 
+  # Handle special case for Vault admin token
+  if "vault_admin_token" in json_data:
+    keypair = {"vault_token": json_data["vault_admin_token"]["value"]["token"]}
+    data.update(keypair)
+  else:
+    keypair = {"vault_token": "not available"}
+  
   return render_template('resources.html', resources_data=data)
 
 @app.route('/uc-01-challenge')
