@@ -1,0 +1,315 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<style>
+
+.explainer-wrapper {
+    min-width: 450px;
+    width: 450px;
+    max-width: 450px;
+
+}
+
+.styled-table {
+    min-width: 400px;
+    width: 400px;
+    max-width: 400px;
+    height: 360px;
+    font-size: 14px;
+}
+
+.styled-table td {
+    padding: 5px 5px 5px 20px;
+}
+
+tr {
+    vertical-align: top;
+}
+
+.r-label {
+    display: inline-block;
+    width: 25%;
+    padding-bottom: 5px;
+}
+
+.demo-url {
+    display: inline-block;
+    min-width: calc(400px * 0.50);
+    width: calc(400px * 0.50);
+    max-width: calc(400px * 0.50);
+    padding: 10px;
+    color: var(--gray-3);
+    background-color: var(--gray-6);
+    border-radius: 5px;
+}
+
+.demo-url-2 {
+    display: inline-block;
+    word-wrap: break-word;
+    min-width: calc(400px * 0.6);
+    width: calc(400px * 0.750);
+    max-width: calc(400px * 0.750);
+    padding: 10px;
+    color: var(--gray-3);
+    background-color: var(--gray-6);
+    border-radius: 5px;
+}
+
+
+.demo-token {
+    display: inline-block;
+    word-wrap: break-word;
+    min-width: calc(400px * 0.6);
+    width: calc(400px * 0.750);
+    max-width: calc(400px * 0.750);
+    padding: 10px;
+    color: var(--gray-3);
+    background-color: var(--gray-6);
+    border-radius: 5px;
+}
+
+td {
+    min-width: calc(400px * 0.6);
+    width: calc(400px * 0.6);
+    max-width: calc(400px * 0.6);
+}
+
+.copy-icon {
+    display: inline-block;
+    width: 21px;
+    height: 21px;
+}
+
+.data-copy {
+    cursor: pointer;
+}
+
+</style>
+
+{% endblock %}
+
+{% block main_body %}
+
+<div class="main-container">
+    <div class="main-content">
+
+        <div class="explainer-wrapper">
+
+            <div class="explainer" style="--splash-delay: 1;" id="hashicups">
+
+                <table class="styled-table">
+                    <tr>
+                        <th>HashiCups</th>
+                    </tr>
+                    <tr>
+                        <!-- Frontend: -->
+                        <td>
+                            <span class="r-label">Frontend:</span>
+                            <span id="hashicups-frontend-url-text" class="demo-url">URL</span>
+                            <a id="hashicups-frontend-url-link" href="#" target="_blank">
+                               <img src="{{ url_for('static', filename='img/icon-link.svg') }}" alt="Hashicups Frontend">
+                            </a>            
+                        </td>
+                    </tr>
+                    <tr>
+                        <!-- Public API: -->
+                        <td>
+                            <span class="r-label">Public API:</span>
+                            <span id="hashicups-public-api-url-text" class="demo-url">URL</span>
+                            <a id="hashicups-public-api-url-link" href="#" target="_blank">
+                               <img src="{{ url_for('static', filename='img/icon-link.svg') }}" alt="Hashicups Public API">
+                            </a>            
+                        </td>
+                    </tr>
+                    <tr>
+                        <!-- Products API: -->
+                        <td>
+                            <span class="r-label">Product API:</span>
+                            <span id="hashicups-product-api-url-text" class="demo-url">URL</span>
+                            <a id="hashicups-product-api-url-link" href="#" target="_blank">
+                            <img src="{{ url_for('static', filename='img/icon-link.svg') }}" alt="Hashicups Products API">
+                            </a>            
+                        </td>
+                    </tr>
+
+                </table>               
+    
+            </div>
+
+            <div class="explainer" style="--splash-delay: 3;" id="vault">
+
+                <table class="styled-table">
+                    <tr>
+                        <th>Vault</th>
+                    </tr>
+                    <tr>
+                        <!-- Vault: -->
+                        <td>
+                            <span id="vault-url-text" class="demo-url-2">URL</span>
+                            <a id="vault-url-link" href="#" target="_blank">
+                               <img src="{{ url_for('static', filename='img/icon-link.svg') }}" alt="HCP Vault">
+                            </a>
+
+                            <br><br><span class="r-label">Root Token:</span><br>
+                            <div class="data-copy">
+                                <span id="vault-token-text" class="demo-token">Token</span>
+                                <img class="copy-icon" src="{{ url_for('static', filename='img/icon-copy.svg') }}" alt="HCP Vault">    
+                            </div>            
+                        </td>
+                    </tr>
+                </table>               
+
+            </div>
+
+
+        </div>
+        <div class="explainer-wrapper">
+
+
+            <div class="explainer" style="--splash-delay: 6;" id="consul">
+
+                <table class="styled-table">
+                    <tr>
+                        <th>Consul</th>
+                    </tr>
+                    <tr>
+                        <!-- Consul: -->
+                        <td>
+                            <span id="consul-url-text" class="demo-url-2">URL</span>
+                            <a id="consul-url-link" href="#" target="_blank">
+                               <img src="{{ url_for('static', filename='img/icon-link.svg') }}" alt="HCP Consul">
+                            </a>            
+                            <br><br><span class="r-label">Root Token:</span><br>
+                            <div class="data-copy">
+                                <span id="consul-token-text" class="demo-token">Token</span>
+                                <img class="copy-icon" src="{{ url_for('static', filename='img/icon-copy.svg') }}" alt="HCP Consul">
+                            </div>
+                        </td>
+                    </tr>
+                </table>               
+
+            </div>
+
+            <div class="explainer" style="--splash-delay: 9;" id="boundary">
+
+                <table class="styled-table">
+                    <tr>
+                        <th>Boundary</th>
+                    </tr>
+                    <tr>
+                        <!-- Boundary: -->
+                        <td>
+                            <span id="boundary-url-text" class="demo-url-2">URL</span>
+                            <a id="boundary-url-link" href="#" target="_blank">
+                                    <img src="{{ url_for('static', filename='img/icon-link.svg') }}" alt="HCP Boundary">
+                            </a>
+
+                            <br><br><span class="r-label">User:</span><br>
+                            <div class="data-copy">
+                                <span id="boundary-user-text" class="demo-token">User</span>
+                                <img class="copy-icon" src="{{ url_for('static', filename='img/icon-copy.svg') }}" alt="HCP Boundary User">
+                            </div>
+                            
+                            <br><br><span class="r-label">Password:</span><br>
+                            <div class="data-copy">
+                                <span id="boundary-token-text" class="demo-token">Password</span>
+                                <img class="copy-icon" src="{{ url_for('static', filename='img/icon-copy.svg') }}" alt="HCP Boundary Password">    
+                            </div>
+                        </td>
+                    </tr>
+                </table>               
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script defer>
+    const data = {{ resources_data|tojson }}
+
+    /* HashiCups */
+    const hashicups = document.getElementById("hashicups")
+    const hashicups_frontend_url = data["hashicups_frontend_url"]
+    const hashicups_payments_url = data["hashicups_payments_url"]
+    const hashicups_product_api_url = data["hashicups_product_api_url"]
+    const hashicups_public_api_url = data["hashicups_public_api_url"]
+
+    /* Vault */
+    const vault_token = data["vault_token"]
+    const vault_url = data["vault_url"]    
+
+    /* Consul */
+    const consul_token = data["consul_token"]
+    const consul_url = data["consul_url"]
+
+    /* Boundary */
+    const boundary_user = data["boundary_user"]
+    const boundary_token = data["boundary_token"]
+    const boundary_url = data["boundary_url"]
+
+    const hashicups_frontend_url_link = document.getElementById("hashicups-frontend-url-link")
+    const hashicups_frontend_url_text = document.getElementById("hashicups-frontend-url-text")
+    hashicups_frontend_url_link.href = hashicups_frontend_url;
+    hashicups_frontend_url_text.innerHTML = hashicups_frontend_url;
+
+    const hashicups_public_api_url_link = document.getElementById("hashicups-public-api-url-link")
+    const hashicups_public_api_url_text = document.getElementById("hashicups-public-api-url-text")
+    hashicups_public_api_url_link.href = hashicups_public_api_url;
+    hashicups_public_api_url_text.innerHTML = hashicups_public_api_url;
+
+    const hashicups_product_api_url_link = document.getElementById("hashicups-product-api-url-link")
+    const hashicups_product_api_url_text = document.getElementById("hashicups-product-api-url-text")
+    hashicups_product_api_url_link.href = hashicups_product_api_url;
+    hashicups_product_api_url_text.innerHTML = hashicups_product_api_url;
+
+    const vault_token_url_link = document.getElementById("vault-url-link")
+    const vault_token_url_link_text = document.getElementById("vault-url-text")
+    vault_token_url_link.href = vault_url
+    vault_token_url_link_text.innerHTML = vault_url
+
+    const vault_token_text = document.getElementById("vault-token-text")
+    vault_token_text.innerHTML = vault_token
+
+    const consul_token_url_link = document.getElementById("consul-url-link")
+    const consul_token_url_link_text = document.getElementById("consul-url-text")
+    consul_token_url_link.href = consul_url
+    consul_token_url_link_text.innerHTML = consul_url
+
+    const consul_token_text = document.getElementById("consul-token-text")
+    consul_token_text.innerHTML = consul_token
+
+    const boundary_token_url_link = document.getElementById("boundary-url-link")
+    const boundary_token_url_link_text = document.getElementById("boundary-url-text")
+    boundary_token_url_link.href = boundary_url
+    boundary_token_url_link_text.innerHTML = boundary_url
+
+    const boundary_user_text = document.getElementById("boundary-user-text")
+    boundary_user_text.innerHTML = boundary_user
+
+    const boundary_token_text = document.getElementById("boundary-token-text")
+    boundary_token_text.innerHTML = boundary_token
+
+    copyElements = document.querySelectorAll(".data-copy")
+
+    for (var i = 0; i < copyElements.length; i++) {
+        copyElements[i].addEventListener('click', e => {
+          const target = e.target.parentNode.querySelector(".demo-token")
+          const copy_icon = e.target.parentNode.querySelector(".copy-icon");
+          window.getSelection().selectAllChildren(target)
+          document.execCommand("copy")
+          copy_icon.src = "{{ url_for('static', filename='img/check-mark.svg') }}"
+        });
+    }
+
+</script>
+
+
+{% endblock %}
+
+{% block next_page %}
+<a href="{{ url_for('challenges') }}">
+    <img src="{{ url_for('static', filename='img/right-arrow.svg') }}" alt="Next">
+</a>
+{% endblock %}

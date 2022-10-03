@@ -177,7 +177,7 @@ a {
 }
 
 .next {
-    background-image: url("/img/right-arrow.svg");
+    /* background-image: url("/static/img/right-arrow.svg"); */
     background-color: #FFFFFF;
     position: absolute;
     width: 30px;
@@ -188,7 +188,7 @@ a {
 }
 
 .last {
-    background-image: url("/img/left-arrow.svg");
+    /* background-image: url("/static/img/left-arrow.svg"); */
     background-color: #FFFFFF;
     position: absolute;
     width: 30px;

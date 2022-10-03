@@ -6,6 +6,7 @@ from wtforms import StringField, PasswordField, TextAreaField, SubmitField
 from wtforms.validators import InputRequired, EqualTo
 
 import os, sys, requests, json
+from pathlib import Path
 
 app = Flask(__name__, template_folder="templates")
 app.config['SECRET_KEY'] = 'correct-horse-battery-staple'
@@ -149,8 +150,6 @@ def track_auth():
   return render_template('track_auth.html')
 
 def writeToLocalConfigFile():
-
-
   EXPLAINER_HOME = os.environ.get('EXPLAINER_HOME') or "/root/explainer"
   EXPLAINER_DATA = EXPLAINER_HOME + "/.deployment_data"
   fo = open(EXPLAINER_DATA, "w")
@@ -185,6 +184,44 @@ def getHCPBearerToken():
   response = requests.post(url, json = data, auth = auth, headers = headers)
 
   return response
+
+@app.route('/resources')
+def resources():
+  EXPLAINER_HOME = os.environ.get('EXPLAINER_HOME') or "/root/explainer"
+  json_data = {}
+  try:
+    file_path = Path(EXPLAINER_HOME + "/deployment_data.json")
+    file_path.resolve(strict=True)
+  except: 
+    return render_template('resources.html', resources_data=json_data)
+  else:
+    deployment_data = open(EXPLAINER_HOME + "/deployment_data.json", "r")
+    json_data = json.load(deployment_data)
+    deployment_data.close()
+
+  # HashiCups Resources
+  hashicups = {
+    'hashicups_frontend_url'    : json_data["frontend_url"]["value"],
+    'hashicups_public_api_url'  : json_data["public_api_url"]["value"],
+    'hashicups_product_api_url' : json_data["products_url"]["value"],
+    'hashicups_payments_url'    : json_data["payments_host_test"]["value"]
+  }
+
+  # HCP Resources
+  hcp = {
+    "boundary_url"   : json_data["boundary_endpoint"]["value"],
+    "boundary_user"  : json_data["boundary_user"]["value"],
+    "boundary_token" : json_data["boundary_password"]["value"],
+    "consul_url"     : json_data["consul_url"]["value"],
+    "consul_token"   : json_data["consul_root_token"]["value"],
+    "vault_url"      : json_data["vault_public_endpoint_url"]["value"],
+    "vault_token"    : json_data["vault_admin_token"]["value"]["token"]
+  }
+ 
+  data = hashicups
+  data.update(hcp)
+
+  return render_template('resources.html', resources_data=data)
 
 @app.route('/uc-01-challenge')
 def uc_01_challenge():
