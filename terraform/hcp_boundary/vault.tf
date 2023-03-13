@@ -15,6 +15,7 @@ resource "boundary_credential_store_vault" "vault" {
 resource "boundary_credential_library_vault" "database" {
   name                = "database"
   description         = "AWS RDS Producs DB"
+  credential_type     = "username_password"
   credential_store_id = boundary_credential_store_vault.vault.id
   path                = var.vault_db_secret_path
   http_method         = "GET"

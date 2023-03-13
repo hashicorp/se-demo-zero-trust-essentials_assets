@@ -23,7 +23,7 @@ resource "boundary_target" "products_database_postgres" {
   host_source_ids = [
     boundary_host_set_static.products_database.id
   ]
-  application_credential_source_ids = [
+  brokered_credential_source_ids = [
     boundary_credential_library_vault.database.id
   ]
 }
