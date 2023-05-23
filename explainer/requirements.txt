@@ -9,7 +9,7 @@ importlib-metadata==4.12.0
 itsdangerous==2.1.2
 Jinja2==3.1.1
 MarkupSafe==2.1.1
-requests==2.27.1
+requests==2.31.0
 urllib3==1.26.9
 uWSGI==2.0.20
 Werkzeug==2.1.1
