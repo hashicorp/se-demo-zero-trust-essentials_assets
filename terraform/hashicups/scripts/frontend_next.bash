@@ -1,4 +1,7 @@
 #!/usr/bin/bash -l 
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 
 # Waiting for bootstrap completion:
 FILE=/tmp/bootstrap_done

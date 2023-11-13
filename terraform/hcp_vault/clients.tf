@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 locals {
   payments_host_attributes = lookup(var.target_ec2_attributes, "payments", "null")
 }

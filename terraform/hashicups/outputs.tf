@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 output "frontend_url" {
   value = "http://${aws_instance.hashicups_frontend[0].public_ip}"
 }

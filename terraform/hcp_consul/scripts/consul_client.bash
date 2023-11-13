@@ -1,4 +1,7 @@
 #!/bin/bash -l
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 
 cd /home/ubuntu/
 tar xvfz client_config.tar.gz

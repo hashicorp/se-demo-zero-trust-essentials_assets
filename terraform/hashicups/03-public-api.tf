@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 resource "null_resource" "configure-public-api" {
   depends_on = [
     aws_db_instance.products,

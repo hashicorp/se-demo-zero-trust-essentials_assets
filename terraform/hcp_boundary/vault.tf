@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 variable "vault_address" {}
 variable "vault_token" {}
 variable "vault_db_secret_path" {}

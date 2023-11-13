@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 from token import EXACT_TOKEN_TYPES
 from flask import Flask
 from flask import render_template, flash, request, session, redirect, url_for

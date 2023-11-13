@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 # HashiCups Outputs
 output "frontend_url" {
   value = module.hashicups.frontend_url

@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 window.onload = function () {
 
     const svg_diagram = document.getElementById('svg-diagram');
