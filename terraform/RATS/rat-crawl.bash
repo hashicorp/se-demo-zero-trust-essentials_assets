@@ -1,4 +1,7 @@
 #!/usr/bin/bash -l
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 #!/usr/bin/bash -l
 
 # Turn off history to leave no tracks

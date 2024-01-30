@@ -1,4 +1,7 @@
 #!/usr/bin/bash -l
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 
 # We are expecting VAULT_ADDR, VAULT_NAMESPACE AND VAULT_TOKEN as
 # inputs. We are not doing any clause checking at the moment. If

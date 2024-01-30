@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 resource "vault_policy" "ssh_cred_injection" {
   name = "kv-read"
 

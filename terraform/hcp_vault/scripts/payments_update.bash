@@ -1,4 +1,7 @@
 #!/usr/bin/bash -l
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 
 export APP_HOME=/opt/hashicups/product-payments
 export APP_PROPERTIES=application.properties

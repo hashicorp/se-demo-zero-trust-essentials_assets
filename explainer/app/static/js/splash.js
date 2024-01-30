@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 const cells_num = 12
 const cells_block = 4
 const matrix_size = cells_num * cells_num;

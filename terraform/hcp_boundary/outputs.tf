@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 output "boundary_target_ec2" {
   value = boundary_target.backend_servers_ssh.id
 }

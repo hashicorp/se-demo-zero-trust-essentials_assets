@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 :root {
     --brand-gradient: linear-gradient(50.7deg, #63d0ff 0%, #844fba 100%);
 }

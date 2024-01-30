@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 resource "null_resource" "configure-rds-postgres" {
   depends_on = [
     aws_db_instance.products
