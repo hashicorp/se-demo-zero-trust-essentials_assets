@@ -260,7 +260,7 @@ resource "aws_db_instance" "products" {
   count                  = length(var.public_subnets_cidr)
   allocated_storage      = 10
   engine                 = "postgres"
-  engine_version         = "14.3"
+  engine_version         = "14.12"
   instance_class         = "db.t3.micro"
   db_name                = "products"
   identifier             = "products"
