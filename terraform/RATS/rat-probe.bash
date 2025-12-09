@@ -1,5 +1,5 @@
 #!/usr/bin/bash -l
-# Copyright (c) HashiCorp, Inc.
+# Copyright IBM Corp. 2022, 2024
 # SPDX-License-Identifier: MPL-2.0
 
 
